@@ -1,37 +1,23 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { VoteProposal } from '@/lib/voteData'
+import { VoteOption } from '@/lib/voteData'
 import ConfettiEffect from './ConfettiEffect'
 
 interface Props {
-  proposal: VoteProposal
+  proposal: VoteOption
   voted: boolean
   isSelected: boolean
   isDimmed: boolean
   onVote: () => void
 }
 
-function ReputationDots({ score }: { score: number }) {
-  const filled = Math.round((score / 100) * 5)
-  return (
-    <div className="flex items-center gap-0.5">
-      {Array.from({ length: 5 }, (_, i) => (
-        <div
-          key={i}
-          className={`w-1.5 h-1.5 rounded-full ${
-            i < filled ? 'bg-[#c4a862]' : 'bg-[#e8e6e3]/10'
-          }`}
-        />
-      ))}
-    </div>
-  )
-}
-
 export default function ProposalCard({ proposal, voted, isSelected, isDimmed, onVote }: Props) {
   const [showConfetti, setShowConfetti] = useState(false)
+  const [pressed, setPressed] = useState(false)
 
   function handleVote() {
+    setPressed(true)
     onVote()
     if (proposal.isWinner) {
       setShowConfetti(true)
@@ -39,94 +25,103 @@ export default function ProposalCard({ proposal, voted, isSelected, isDimmed, on
   }
 
   return (
-    <motion.div
+    <motion.button
+      disabled={voted}
+      onClick={handleVote}
+      whileHover={!voted ? { scale: 1.03, y: -4 } : {}}
+      whileTap={!voted ? { scale: 0.97 } : {}}
       animate={
         voted && isSelected && !proposal.isWinner
-          ? { x: [0, -8, 8, -6, 6, -3, 3, 0] }
-          : voted && isSelected
-          ? { borderColor: 'rgba(196,168,98,0.5)' }
+          ? { x: [0, -12, 12, -8, 8, -4, 4, 0] }
+          : voted && isSelected && proposal.isWinner
+          ? { scale: [1, 1.05, 1] }
           : {}
       }
       transition={
         voted && isSelected && !proposal.isWinner
           ? { duration: 0.5 }
-          : { duration: 0.3 }
+          : voted && isSelected && proposal.isWinner
+          ? { duration: 0.4, delay: 0.1 }
+          : { type: 'spring', stiffness: 400, damping: 25 }
       }
-      className={`relative flex flex-col rounded-2xl border p-5 transition-all duration-300 ${
+      className={`relative flex flex-col items-center rounded-3xl border-2 p-8 transition-all duration-300 cursor-pointer group ${
         isDimmed
-          ? 'opacity-40 border-[#e8e6e3]/5 bg-[#e8e6e3]/[0.02]'
+          ? 'opacity-30 border-[#e8e6e3]/5 bg-[#e8e6e3]/[0.02] cursor-default'
           : isSelected && proposal.isWinner
-          ? 'border-[#c4a862]/40 bg-[#c4a862]/[0.06]'
+          ? 'border-[#c4a862] bg-[#c4a862]/[0.08] shadow-lg shadow-[#c4a862]/20'
           : isSelected && !proposal.isWinner
-          ? 'border-red-500/30 bg-red-500/[0.04]'
-          : 'border-[#e8e6e3]/10 bg-[#e8e6e3]/[0.03] hover:border-[#c4a862]/30 hover:bg-[#e8e6e3]/[0.05]'
+          ? 'border-red-500/40 bg-red-500/[0.05]'
+          : 'border-[#e8e6e3]/10 bg-[#e8e6e3]/[0.03] hover:border-[#c4a862]/50 hover:bg-[#c4a862]/[0.04] hover:shadow-xl hover:shadow-[#c4a862]/10'
       }`}
     >
       {showConfetti && <ConfettiEffect />}
 
-      {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-[#7b8a6e]/15 flex items-center justify-center text-[10px] font-mono text-[#7b8a6e] font-bold">
-            {proposal.builderName.split(' ').map(n => n[0]).join('')}
-          </div>
-          <div>
-            <p className="text-[#e8e6e3]/80 text-sm font-semibold">{proposal.builderName}</p>
-            <div className="flex items-center gap-2">
-              <ReputationDots score={proposal.reputation} />
-              <span className="text-[#e8e6e3]/20 text-[10px] font-mono">{proposal.reputation}/100</span>
-            </div>
-          </div>
-        </div>
-        <span className="text-[#c4a862]/40 text-2xl font-bold font-mono">{proposal.label}</span>
-      </div>
+      {/* Giant emoji / visual */}
+      <motion.div
+        animate={!voted ? {
+          y: [0, -6, 0],
+          rotate: [0, -3, 3, 0],
+        } : {}}
+        transition={!voted ? {
+          duration: 3,
+          repeat: Infinity,
+          ease: 'easeInOut',
+        } : {}}
+        className="text-8xl mb-6 select-none"
+      >
+        {proposal.image}
+      </motion.div>
 
-      {/* Approach */}
-      <p className="text-[#e8e6e3]/55 text-sm leading-relaxed mb-4 flex-1">{proposal.approach}</p>
+      {/* Title */}
+      <h3 className={`text-2xl font-bold mb-3 transition-colors ${
+        isSelected && proposal.isWinner ? 'text-[#c4a862]' :
+        isSelected && !proposal.isWinner ? 'text-red-400/70' :
+        'text-[#e8e6e3]/90 group-hover:text-[#c4a862]'
+      }`}>
+        {proposal.title}
+      </h3>
 
-      {/* Tech + Timeline */}
-      <div className="flex flex-wrap items-center gap-2 mb-5">
-        <span className="px-2 py-0.5 rounded-full bg-[#e8e6e3]/[0.05] text-[#e8e6e3]/30 text-[10px] font-mono">{proposal.techStack}</span>
-      </div>
-      <div className="flex items-center gap-4 text-[10px] font-mono text-[#e8e6e3]/25 mb-5">
-        <span>{proposal.timeline}</span>
-      </div>
+      {/* Tagline */}
+      <p className={`text-sm leading-relaxed text-center max-w-xs mb-6 ${
+        isDimmed ? 'text-[#e8e6e3]/20' : 'text-[#e8e6e3]/50'
+      }`}>
+        {proposal.tagline}
+      </p>
 
-      {/* Vote button */}
+      {/* Vote area */}
       {!voted ? (
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.96 }}
-          onClick={handleVote}
-          className="w-full py-3 rounded-xl bg-[#c4a862]/10 border border-[#c4a862]/20 text-[#c4a862] font-bold text-sm hover:bg-[#c4a862]/20 hover:border-[#c4a862]/40 transition-all"
-        >
-          Vote for {proposal.label}
-        </motion.button>
-      ) : isSelected ? (
-        <div className={`w-full py-3 rounded-xl text-center font-bold text-sm ${
-          proposal.isWinner
-            ? 'bg-[#7b8a6e]/15 text-[#8a9a7b] border border-[#7b8a6e]/20'
-            : 'bg-red-500/10 text-red-400/60 border border-red-500/15'
+        <div className={`w-full py-4 rounded-2xl text-center font-bold text-lg transition-all ${
+          pressed
+            ? 'bg-[#c4a862] text-[#111110] scale-95'
+            : 'bg-[#c4a862]/10 border border-[#c4a862]/25 text-[#c4a862] group-hover:bg-[#c4a862]/20 group-hover:border-[#c4a862]/50'
         }`}>
-          {proposal.isWinner ? 'You voted correctly!' : 'Not the winner'}
+          Pick this one
         </div>
-      ) : (
-        <div className="w-full py-3 rounded-xl text-center text-[#e8e6e3]/15 text-sm font-mono">
-          —
-        </div>
-      )}
+      ) : isSelected ? (
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          className={`w-full py-4 rounded-2xl text-center font-bold text-lg ${
+            proposal.isWinner
+              ? 'bg-[#c4a862]/20 text-[#c4a862]'
+              : 'bg-red-500/10 text-red-400/60'
+          }`}
+        >
+          {proposal.isWinner ? 'Nailed it!' : 'Not this time'}
+        </motion.div>
+      ) : null}
 
       {/* Winner badge */}
       {voted && proposal.isWinner && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.3, type: 'spring' }}
-          className="absolute -top-2 -right-2 px-2 py-0.5 rounded-full bg-[#c4a862] text-[#111110] text-[10px] font-mono font-bold"
+          initial={{ opacity: 0, scale: 0, rotate: -20 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ delay: 0.2, type: 'spring', stiffness: 300 }}
+          className="absolute -top-3 -right-3 px-4 py-1.5 rounded-full bg-[#c4a862] text-[#111110] text-xs font-mono font-bold shadow-lg shadow-[#c4a862]/30"
         >
           WINNER
         </motion.div>
       )}
-    </motion.div>
+    </motion.button>
   )
 }

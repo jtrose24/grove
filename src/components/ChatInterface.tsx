@@ -169,8 +169,8 @@ export default function ChatInterface({ isDemo }: Props) {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mt-12"
           >
-            <p className="text-[#c4a862] text-lg font-medium">What would you like to grow?</p>
-            <p className="text-[#e8e6e3]/40 text-sm mt-2">Share an idea — any idea. We'll shape it together.</p>
+            <p className="text-[#c4a862] text-lg font-medium">What kind of media agent would you launch?</p>
+            <p className="text-[#e8e6e3]/40 text-sm mt-2">Describe a media agent — its voice, audience, and channel. We'll design it together.</p>
           </motion.div>
         )}
 
@@ -250,7 +250,7 @@ export default function ChatInterface({ isDemo }: Props) {
               onClick={handleGrowIt}
               className="w-full py-3 rounded-xl bg-[#7b8a6e]/10 border border-[#c4a862]/40 text-[#c4a862] font-semibold text-sm hover:border-[#c4a862] hover:shadow-lg hover:shadow-[#c4a862]/10 transition-all duration-200 flex items-center justify-center gap-2"
             >
-              🌱 Grow It
+              Launch It
             </button>
           </motion.div>
         )}
@@ -264,7 +264,7 @@ export default function ChatInterface({ isDemo }: Props) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && send()}
-              placeholder="Describe your idea..."
+              placeholder="Describe your media agent..."
               className="flex-1 bg-transparent text-[#e8e6e3] placeholder-[#e8e6e3]/30 text-sm outline-none"
             />
             <button
@@ -279,9 +279,9 @@ export default function ChatInterface({ isDemo }: Props) {
           {messages.length === 0 && (
             <div className="flex gap-2 mt-3 flex-wrap">
               {[
-                'A marketplace for local farmers',
-                'AI tutoring for kids',
-                'Carbon credits for SMBs',
+                'A satirical tech cartoonist on X',
+                'A children\'s storytelling agent',
+                'A local news agent for my city',
               ].map((s) => (
                 <button
                   key={s}

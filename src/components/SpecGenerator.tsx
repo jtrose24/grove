@@ -213,7 +213,7 @@ export default function SpecGenerator({ isDemo }: Props) {
             </span>
           )}
           {isDemo && (
-            <span className="ml-auto text-[#e8e6e3]/15 text-[10px] font-mono">arborist → openclaw</span>
+            <span className="ml-auto text-[#e8e6e3]/15 text-[10px] font-mono">arborist → sovra</span>
           )}
         </div>
 
@@ -233,7 +233,7 @@ export default function SpecGenerator({ isDemo }: Props) {
               onClick={() => setPhase('bidding')}
               className="mt-3 w-full py-3 rounded-xl bg-[#c4a862] hover:bg-[#d4b872] text-[#111110] font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2"
             >
-              Open Grove Auction — Start the Bidding
+              Open Grove Auction — Find Builders
             </motion.button>
           )}
         </AnimatePresence>

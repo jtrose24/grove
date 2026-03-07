@@ -16,16 +16,16 @@ function GrowPageInner() {
   const { user, signInAs } = useAuthStore()
 
   useEffect(() => {
-    if (isDemo && (!user || user.id !== 'pl-ac')) {
-      signInAs('pl-ac')
+    if (isDemo && (!user || user.id !== 'pl-2')) {
+      signInAs('pl-2')
     }
   }, [isDemo, user, signInAs])
 
   const PHASE_LABELS: Record<string, string> = {
-    ideation: 'Plant your idea',
-    'spec-gen': 'Arborist is building your spec',
+    ideation: 'Describe your agent',
+    'spec-gen': 'Arborist is designing the agent',
     bidding: 'Builders are competing',
-    execution: 'Building live',
+    execution: 'Agent going live',
   }
 
   return (

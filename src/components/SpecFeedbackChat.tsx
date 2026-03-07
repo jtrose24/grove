@@ -11,18 +11,18 @@ interface ChatMessage {
 const DEMO_SCRIPT = [
   {
     role: 'user' as const,
-    content: "Move the tax document parser before the LLM pipeline. And cap the alt-data connector budget at 2 epochs.",
+    content: "The TEE enclave needs to generate keys in-enclave. And make sure the agent can't publish without passing the content safety layer first — no bypass path.",
   },
   {
     role: 'arborist' as const,
-    content: "Good thinking. I'll restructure Phase 2 to prioritize the tax document parser before the LLM pipeline — that way we have structured financial data ready before we start generating insights. I'll also cap the alt-data connector at 2 epochs and move the social sentiment listener to a stretch goal if we hit timeline pressure.",
+    content: "Agreed. I'll add an in-enclave key generation requirement to Phase 2 and wire the content safety layer as a hard dependency for the output renderer in Phase 1. No cartoon reaches any channel without passing the full filter chain. I'll also add attestation logging so every publish decision is cryptographically signed.",
   },
 ]
 
 const DEMO_RESPONSES = [
-  "Makes sense. I've bumped the webhook processor to Phase 1 and added a Redis Streams dependency. The reconciliation engine now waits for both Plaid and the webhook layer to be complete.",
-  "Noted. I'll tighten the scope on Phase 3 — the portfolio analytics module will use pre-aggregated materialized views instead of real-time computation. Should cut the epoch count from 4 to 3.",
-  "I've updated the spec to reflect that. The notification router in Phase 4 now depends on the alert engine, and I've added a user preference layer so notifications aren't overwhelming.",
+  "Done. I've added a resurrection test to Phase 2 — encrypted state snapshot, simulate enclave failure, restore on fresh infrastructure, verify same identity. The agent must pass this before going live.",
+  "Noted. I'll cap the English auction at 6-hour cycles and add a minimum bid of 10 USDC to prevent spam. The escrow contract returns funds automatically if the agent rejects a request within 72 hours.",
+  "Updated. The futarchy governance module in Phase 4 now requires prediction markets to hit a YES threshold before any policy change ships. Contributors get rewarded if the market was right, penalized if not.",
 ]
 
 export default function SpecFeedbackChat({ isDemo }: { isDemo?: boolean }) {

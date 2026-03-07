@@ -1,19 +1,19 @@
 import { Bid, SpecPhase, WorkItem, ExecutionLog } from './store'
 
 export const MOCK_BUILDERS = [
-  { id: 'b1', name: 'Atlas Build', avatar: '🌲', reputation: 94 },
-  { id: 'b2', name: 'Verdant Labs', avatar: '🌿', reputation: 88 },
+  { id: 'b1', name: 'Atlas Agents', avatar: '🌲', reputation: 94 },
+  { id: 'b2', name: 'Verdant AI', avatar: '🌿', reputation: 88 },
   { id: 'b3', name: 'Canopy AI', avatar: '🍃', reputation: 91 },
-  { id: 'b4', name: 'Root Systems', avatar: '🌱', reputation: 79 },
-  { id: 'b5', name: 'Branch & Co', avatar: '🌳', reputation: 85 },
+  { id: 'b4', name: 'Root Protocol', avatar: '🌱', reputation: 79 },
+  { id: 'b5', name: 'Branch Labs', avatar: '🌳', reputation: 85 },
 ]
 
 const APPROACHES = [
-  'Ship a lean MVP with React + Supabase, focus on core loop first.',
-  'Go headless — API-first backend with multiple frontend clients.',
-  'Full-stack Next.js monorepo, deploy on Vercel edge network.',
-  'Microservices from day one, each phase independently deployable.',
-  'JAMstack approach — static frontend, serverless functions, CDN-first.',
+  'Deploy agent runtime in TEE enclave with on-chain policy contracts.',
+  'Content pipeline via fine-tuned model + safety classifier + multi-channel publisher.',
+  'Sovereign credential vault + automated account management + revenue custody.',
+  'Full agent stack: identity, constraints, distribution, and monetization in one deploy.',
+  'Modular agent architecture — each capability independently upgradeable.',
 ]
 
 export function generateBid(phaseId: string): Bid {
@@ -106,10 +106,10 @@ export function parseSpecPhases(spec: string): SpecPhase[] {
   // Fallback phases if parsing yields nothing
   if (phases.length === 0) {
     return [
-      { id: 'phase-1', number: 1, title: 'Core Product Definition', description: 'Define the core value proposition, user personas, and key differentiators.' },
-      { id: 'phase-2', number: 2, title: 'MVP Build', description: 'Ship the minimum viable product with core loop functional end-to-end.' },
-      { id: 'phase-3', number: 3, title: 'Distribution Strategy', description: 'Identify growth channels, launch strategy, and early adopter pipeline.' },
-      { id: 'phase-4', number: 4, title: 'Monetization Layer', description: 'Implement pricing, billing, and revenue capture mechanisms.' },
+      { id: 'phase-1', number: 1, title: 'Agent Identity & Content Engine', description: 'Define the agent\'s persona, voice, content format, and generation pipeline.' },
+      { id: 'phase-2', number: 2, title: 'Sovereign Infrastructure', description: 'Deploy the agent runtime in a secure enclave with credential management and policy contracts.' },
+      { id: 'phase-3', number: 3, title: 'Distribution & Audience', description: 'Connect publishing channels, grow audience, and optimize engagement.' },
+      { id: 'phase-4', number: 4, title: 'Monetization & Governance', description: 'Implement revenue mechanisms, governance contracts, and autonomous operation.' },
     ]
   }
 
@@ -117,18 +117,18 @@ export function parseSpecPhases(spec: string): SpecPhase[] {
 }
 
 const EXECUTION_MESSAGES = [
-  (builder: string) => `${builder} is analyzing the spec...`,
-  (builder: string) => `${builder} scaffolding project structure...`,
-  () => `Initializing repository and CI/CD pipeline...`,
-  () => `Database schema deployed to production...`,
-  () => `API routes configured and tested...`,
-  () => `Frontend components rendering successfully...`,
-  () => `Authentication layer integrated...`,
-  () => `Landing page A/B test launched...`,
-  () => `Analytics pipeline connected...`,
-  () => `First 10 beta users onboarded...`,
-  () => `Revenue tracking active...`,
-  () => `Core loop validated with real users...`,
+  (builder: string) => `${builder} analyzing agent spec...`,
+  (builder: string) => `${builder} configuring content generation pipeline...`,
+  () => `deploying TEE enclave runtime...`,
+  () => `connecting social media credentials...`,
+  () => `content safety layer active...`,
+  () => `first autonomous post published...`,
+  () => `audience engagement metrics flowing...`,
+  () => `revenue mechanisms initialized...`,
+  () => `agent operating within constraints...`,
+  () => `governance contracts deployed...`,
+  () => `agent fully autonomous and live...`,
+  () => `sovereign media agent operational...`,
 ]
 
 export function getExecutionMessage(index: number, builderName: string): ExecutionLog {

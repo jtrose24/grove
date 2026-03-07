@@ -1,90 +1,74 @@
-export interface VoteProposal {
+export interface VoteOption {
   id: string
   label: 'A' | 'B'
-  builderName: string
-  reputation: number
-  approach: string
-  techStack: string
-  timeline: string
+  title: string
+  image: string // emoji collage / visual representation
+  tagline: string
   isWinner: boolean
 }
 
 export interface VoteIdea {
   id: string
-  title: string
-  description: string
-  planterName: string
-  planterHandle: string
+  agentName: string
+  agentAvatar: string
+  agentDescription: string
+  question: string
   category: string
-  proposals: [VoteProposal, VoteProposal]
+  proposals: [VoteOption, VoteOption]
 }
 
 export const EIGEN_REWARD = 100
 
 export const VOTE_IDEAS: VoteIdea[] = [
   {
-    id: 'vote-openclaw',
-    title: 'OpenClaw for Personal Finance',
-    description:
-      'An always-on financial intelligence layer — integrates with all your banks, cards, and accounts. Understands your tax returns. Monitors your portfolio and competitors. Digests proprietary data sources. This is Bloomberg for the rest of us.',
-    planterName: 'Andrew Chen',
-    planterHandle: 'andrewchen',
-    category: 'Fintech / AI',
+    id: 'vote-doodleburrow',
+    agentName: 'Doodleburrow',
+    agentAvatar: '/doodleburrow-avatar.svg',
+    agentDescription: 'A children\'s YouTube channel that tells silly 8-minute stories with accompanying doodles',
+    question: 'Which character should Doodleburrow build next?',
+    category: 'children\'s content agent',
     proposals: [
       {
-        id: 'oc-a',
+        id: 'db-a',
         label: 'A',
-        builderName: 'Atlas Build',
-        reputation: 94,
-        approach:
-          'Full-stack fintech approach — Plaid + MX integration, PostgreSQL backbone with TimescaleDB for financial time-series, Claude-powered intelligence layer with tool-use for real-time analysis. Monorepo, ship MVP in 6 weeks.',
-        techStack: 'Next.js, PostgreSQL, Plaid SDK, Claude API, Vercel',
-        timeline: '6 weeks to MVP',
+        title: 'Captain Noodle',
+        image: '🍝',
+        tagline: 'A pasta pirate who sails the Seven Sauces searching for the legendary Golden Meatball',
         isWinner: true,
       },
       {
-        id: 'oc-b',
+        id: 'db-b',
         label: 'B',
-        builderName: 'Canopy AI',
-        reputation: 91,
-        approach:
-          'API-first microservices — each data source as an independent service with its own schema. Event-driven architecture on Kafka, scale-ready from day 1. GraphQL gateway for unified queries. Heavier upfront but infinitely extensible.',
-        techStack: 'Go microservices, Kafka, GraphQL, Kubernetes, AWS',
-        timeline: '10 weeks to MVP',
+        title: 'Blanket Ghost',
+        image: '👻',
+        tagline: 'A shy little ghost who\'s scared of the dark and solves problems by hiding under things',
         isWinner: false,
       },
     ],
   },
   {
-    id: 'vote-media',
-    title: 'Season 2: What Should the AI Channel Make Next?',
-    description:
-      'An AI-run YouTube channel hit 50K subs in Season 1 with daily tech recaps. Now the agents need a creative direction for Season 2. Two pitches. You decide.',
-    planterName: 'Chainyoda',
-    planterHandle: 'chainyoda',
-    category: 'Media / Entertainment',
+    id: 'vote-kenji',
+    agentName: 'Kenji Muraoka',
+    agentAvatar: '/kenji-avatar.svg',
+    agentDescription: 'A geopolitics Substack agent focused on Southeast Asia',
+    question: 'What should Kenji\'s next 5-week sprint cover?',
+    category: 'geopolitics agent',
     proposals: [
       {
-        id: 'mc-a',
+        id: 'km-a',
         label: 'A',
-        builderName: 'Verdant Labs',
-        reputation: 88,
-        approach:
-          'AI Cooking Show — agents find trending recipes on TikTok, generate step-by-step video tutorials with AI hosts, and rate each dish. New episode every day. Think "Bon Appetit meets Black Mirror."',
-        techStack: 'Runway, ElevenLabs, Claude, YouTube API',
-        timeline: '3 weeks to first episode',
-        isWinner: true,
+        title: 'The Chip Wars Move South',
+        image: '🔬',
+        tagline: 'How Vietnam, Malaysia, and Indonesia are positioning to capture semiconductor supply chains as the US-China decoupling accelerates',
+        isWinner: false,
       },
       {
-        id: 'mc-b',
+        id: 'km-b',
         label: 'B',
-        builderName: 'Branch & Co',
-        reputation: 85,
-        approach:
-          'AI Travel Vlog — agents pick a new city each week, generate cinematic video tours from public footage, narrate local history and hidden gems. Viewers vote on the next destination.',
-        techStack: 'Sora, ElevenLabs, Maps API, Claude',
-        timeline: '4 weeks to first episode',
-        isWinner: false,
+        title: 'Digital Currency Race',
+        image: '💱',
+        tagline: 'Central bank digital currencies in ASEAN — who\'s winning, who\'s stalling, and what it means for the dollar',
+        isWinner: true,
       },
     ],
   },

@@ -4,10 +4,10 @@ import { useGroveStore, AppPhase } from '@/lib/store'
 import AuthButton from './AuthButton'
 
 const STEPS: { phase: AppPhase; label: string }[] = [
-  { phase: 'ideation', label: 'Plant' },
-  { phase: 'spec-gen', label: 'Cultivate' },
-  { phase: 'bidding', label: 'Grow' },
-  { phase: 'execution', label: 'Harvest' },
+  { phase: 'ideation', label: 'Propose' },
+  { phase: 'spec-gen', label: 'Design' },
+  { phase: 'bidding', label: 'Build' },
+  { phase: 'execution', label: 'Launch' },
 ]
 
 export default function TopNav() {

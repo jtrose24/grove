@@ -31,7 +31,6 @@ export default function VotingExperience() {
       setTimeout(() => setFloatingReward(false), 1200)
     }
 
-    // Delay before showing results
     setTimeout(() => setPhase('results'), 1500)
   }, [idea, hasVoted, castVote])
 
@@ -74,80 +73,83 @@ export default function VotingExperience() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -80 }}
               transition={{ duration: 0.35 }}
-              className="w-full max-w-4xl relative"
+              className="w-full max-w-3xl relative"
             >
               {/* Floating reward */}
               <AnimatePresence>
                 {floatingReward && (
                   <motion.div
-                    initial={{ opacity: 1, y: 0, x: '-50%' }}
-                    animate={{ opacity: 0, y: -80 }}
+                    initial={{ opacity: 1, y: 0, x: '-50%', scale: 1 }}
+                    animate={{ opacity: 0, y: -100, scale: 1.5 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 1 }}
-                    className="absolute top-0 left-1/2 z-50 text-[#c4a862] text-2xl font-bold font-mono pointer-events-none"
+                    transition={{ duration: 1.2 }}
+                    className="absolute top-0 left-1/2 z-50 text-[#c4a862] text-3xl font-bold font-mono pointer-events-none"
                   >
                     +{EIGEN_REWARD} EIGEN
                   </motion.div>
                 )}
               </AnimatePresence>
 
-              {/* Idea header */}
-              <div className="text-center mb-8">
-                <div className="flex items-center justify-center gap-2 mb-3">
-                  <span className="px-2 py-0.5 rounded-full bg-[#e8e6e3]/[0.05] text-[#e8e6e3]/30 text-[10px] font-mono">
-                    {idea.category}
-                  </span>
-                  <span className="text-[#e8e6e3]/10 text-[10px]">|</span>
-                  <span className="text-[#e8e6e3]/25 text-[10px] font-mono">
-                    planted by {idea.planterName}
-                  </span>
+              {/* Agent header — compact */}
+              <div className="text-center mb-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#e8e6e3]/[0.04] border border-[#e8e6e3]/8 mb-4">
+                  <span className="w-2 h-2 rounded-full bg-[#c4a862] animate-pulse" />
+                  <span className="text-[#e8e6e3]/40 text-xs font-mono">{idea.category}</span>
                 </div>
-                <h1 className="text-2xl font-bold text-[#e8e6e3]/90 mb-3">{idea.title}</h1>
-                <p className="text-[#e8e6e3]/40 text-sm max-w-2xl mx-auto leading-relaxed">{idea.description}</p>
+                <h1 className="text-3xl font-bold text-[#e8e6e3]/90 mb-2">{idea.agentName}</h1>
+                <p className="text-[#e8e6e3]/30 text-sm max-w-lg mx-auto">{idea.agentDescription}</p>
               </div>
 
-              {/* Which builder should win? */}
-              <p className="text-center text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider mb-6">
-                Which approach should win?
-              </p>
+              {/* Question */}
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.15 }}
+                className="text-center text-[#c4a862] text-lg font-bold mb-8"
+              >
+                {idea.question}
+              </motion.p>
 
-              {/* Proposals */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {idea.proposals.map((proposal) => (
-                  <ProposalCard
+              {/* Visual choice cards */}
+              <div className="grid grid-cols-2 gap-6">
+                {idea.proposals.map((proposal, i) => (
+                  <motion.div
                     key={proposal.id}
-                    proposal={proposal}
-                    voted={hasVoted}
-                    isSelected={votes[idea.id] === proposal.label}
-                    isDimmed={hasVoted && votes[idea.id] !== proposal.label}
-                    onVote={() => handleVote(proposal.label)}
-                  />
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.2 + i * 0.1 }}
+                  >
+                    <ProposalCard
+                      proposal={proposal}
+                      voted={hasVoted}
+                      isSelected={votes[idea.id] === proposal.label}
+                      isDimmed={hasVoted && votes[idea.id] !== proposal.label}
+                      onVote={() => handleVote(proposal.label)}
+                    />
+                  </motion.div>
                 ))}
               </div>
 
               {/* Progress dots */}
-              <div className="flex items-center justify-center gap-2 mt-8">
+              <div className="flex items-center justify-center gap-3 mt-10">
                 {VOTE_IDEAS.map((_, i) => (
                   <motion.div
                     key={i}
                     animate={i === currentIdeaIndex ? {
-                      scale: [1, 1.3, 1],
-                      opacity: [0.6, 1, 0.6],
+                      scale: [1, 1.5, 1],
+                      opacity: [0.5, 1, 0.5],
                     } : {}}
                     transition={i === currentIdeaIndex ? {
                       duration: 2,
                       repeat: Infinity,
                     } : {}}
-                    className={`w-2 h-2 rounded-full ${
-                      i < currentIdeaIndex ? 'bg-[#c4a862]' :
-                      i === currentIdeaIndex ? 'bg-[#c4a862]/60' :
-                      'bg-[#e8e6e3]/10'
+                    className={`rounded-full transition-all ${
+                      i < currentIdeaIndex ? 'w-3 h-3 bg-[#c4a862]' :
+                      i === currentIdeaIndex ? 'w-3 h-3 bg-[#c4a862]/60' :
+                      'w-2 h-2 bg-[#e8e6e3]/10'
                     }`}
                   />
                 ))}
-                <span className="text-[#e8e6e3]/15 text-[10px] font-mono ml-2">
-                  {currentIdeaIndex + 1} of {VOTE_IDEAS.length}
-                </span>
               </div>
             </motion.div>
           )}

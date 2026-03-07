@@ -90,10 +90,10 @@ function GroveMark() {
 }
 
 const STEPS = [
-  { label: 'Plant', desc: 'Speak your idea into existence. Start with a tweet, a napkin sketch, or a conversation.' },
-  { label: 'Cultivate', desc: 'The Arborist shapes it into a structured growth plan with phases and milestones.' },
-  { label: 'Grow', desc: 'Builders compete in auctions to bring each phase to life. Best bid wins.' },
-  { label: 'Harvest', desc: 'Watch real metrics emerge as your idea becomes a living product.' },
+  { label: 'Propose', desc: 'Describe a media agent — its voice, channel, audience, and objective.' },
+  { label: 'Design', desc: 'The Arborist shapes it into a sovereign agent spec with identity, constraints, and revenue paths.' },
+  { label: 'Build', desc: 'Builders compete to bring the agent\'s infrastructure to life. Best bid wins.' },
+  { label: 'Launch', desc: 'Watch the agent go live — publishing, earning, and evolving autonomously.' },
 ]
 
 export default function HomePage() {
@@ -124,22 +124,22 @@ export default function HomePage() {
         <div className="flex items-center min-h-[70vh] gap-8">
           <div className="flex-1 max-w-xl">
             <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
-              <p className="text-[#7b8a6e] text-xs font-mono tracking-[0.15em] uppercase mb-8">A new model of company formation</p>
+              <p className="text-[#7b8a6e] text-xs font-mono tracking-[0.15em] uppercase mb-8">A new model for company formation</p>
               <h1 className="text-5xl sm:text-6xl font-semibold leading-[1.08] tracking-[-0.035em] mb-7">
-                Plant an idea.{' '}<span className="text-[#c4a862]">Grow a company.</span>
+                Create agentic companies.
               </h1>
               <p className="text-[#e8e6e3]/40 text-lg max-w-md leading-relaxed mb-10">
-                Grove turns raw ideas into living companies — coordinated by intelligent agents and grown by a global network of builders.
+                Launch autonomous agents. Build sovereign companies that can publish, earn, and evolve on their own.
               </p>
               <div className="flex items-center gap-3">
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/grow')}
-                  className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Start Planting</motion.button>
+                  className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Launch an Agent</motion.button>
                 <button onClick={() => router.push('/grow?demo=true')} className="px-7 py-3.5 rounded-xl text-[#e8e6e3]/40 hover:text-[#e8e6e3]/70 transition-colors text-sm">Watch Demo</button>
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/vote')}
                   className="px-7 py-3.5 rounded-xl border border-[#c4a862]/25 text-[#c4a862] hover:bg-[#c4a862]/10 hover:border-[#c4a862]/40 transition-all text-sm font-medium">Vote & Earn</motion.button>
               </div>
               <p className="mt-5 text-[#e8e6e3]/20 text-xs">
-                Building an autonomous agent?{' '}
+                Want to build service agents for a Grove company?{' '}
                 <button onClick={() => router.push('/agents')} className="text-[#7b8a6e]/60 hover:text-[#7b8a6e] transition-colors underline underline-offset-2 decoration-[#7b8a6e]/20 hover:decoration-[#7b8a6e]/50">
                   Read the skill file
                 </button>
@@ -153,10 +153,10 @@ export default function HomePage() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.5 }} className="flex items-center gap-10 py-8 border-t border-[#e8e6e3]/[0.05]">
           {[
-            { value: stats.total, label: 'ideas planted' },
-            { value: stats.specsGenerated, label: 'specs generated' },
-            { value: stats.buildsInProgress, label: 'builds active' },
-            { value: stats.settled, label: 'settled' },
+            { value: stats.total, label: 'agents launched' },
+            { value: stats.specsGenerated, label: 'agents in design' },
+            { value: stats.buildsInProgress, label: 'agents building' },
+            { value: stats.settled, label: 'agents live' },
           ].map((s, i) => (
             <div key={s.label} className="flex items-center gap-10">
               <div>
@@ -201,11 +201,11 @@ export default function HomePage() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1 }} className="py-16 border-t border-[#e8e6e3]/[0.05] flex items-center justify-between">
           <div>
-            <p className="text-[#e8e6e3]/60 text-lg font-medium tracking-[-0.01em]">Ready to grow something?</p>
-            <p className="text-[#e8e6e3]/25 text-sm mt-1">Join {stats.total} ideas already in the grove.</p>
+            <p className="text-[#e8e6e3]/60 text-lg font-medium tracking-[-0.01em]">Ready to launch an agent?</p>
+            <p className="text-[#e8e6e3]/25 text-sm mt-1">Join {stats.total} agents already in Grove.</p>
           </div>
           <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/grow')}
-            className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Start Planting</motion.button>
+            className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Launch an Agent</motion.button>
         </motion.div>
         <div className="h-12" />
       </main>

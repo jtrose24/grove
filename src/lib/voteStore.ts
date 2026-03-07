@@ -95,6 +95,13 @@ export const useVoteStore = create<VoteState>()(
           votingComplete: false,
         }),
     }),
-    { name: 'grove-vote' }
+    {
+      name: 'grove-vote',
+      partialize: (state) => {
+        // Exclude PII from localStorage — keep only game state
+        const { email: _e, walletAddress: _w, ...rest } = state
+        return rest
+      },
+    }
   )
 )

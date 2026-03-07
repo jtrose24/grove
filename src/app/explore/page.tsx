@@ -45,22 +45,22 @@ export default function ExplorePage() {
           >
             <div>
               <p className="text-2xl font-bold text-[#c4a862]">{stats.total}</p>
-              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Ideas planted</p>
+              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Agents launched</p>
             </div>
             <div className="w-px h-8 bg-[#e8e6e3]/8" />
             <div>
               <p className="text-2xl font-bold text-[#8a9a7b]">{stats.specsGenerated}</p>
-              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Specs generated</p>
+              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">In design</p>
             </div>
             <div className="w-px h-8 bg-[#e8e6e3]/8" />
             <div>
               <p className="text-2xl font-bold text-[#e8e6e3]/80">{stats.buildsInProgress}</p>
-              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Builds active</p>
+              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Building</p>
             </div>
             <div className="w-px h-8 bg-[#e8e6e3]/8" />
             <div>
               <p className="text-2xl font-bold text-[#8a9a7b]/80">{stats.settled}</p>
-              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Settled</p>
+              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Live</p>
             </div>
           </motion.div>
         </div>
@@ -100,7 +100,7 @@ export default function ExplorePage() {
 
         {ideas.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-[#e8e6e3]/20 text-sm">No ideas in this phase yet.</p>
+            <p className="text-[#e8e6e3]/20 text-sm">No agents in this phase yet.</p>
           </div>
         )}
       </div>
