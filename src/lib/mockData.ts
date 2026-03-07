@@ -1,4 +1,4 @@
-import { Bid, SpecPhase, ExecutionLog } from './store'
+import { Bid, SpecPhase, WorkItem, ExecutionLog } from './store'
 
 export const MOCK_BUILDERS = [
   { id: 'b1', name: 'Atlas Build', avatar: '🌲', reputation: 94 },
@@ -46,37 +46,62 @@ export function scoreBid(bid: Bid): number {
 export function parseSpecPhases(spec: string): SpecPhase[] {
   const phases: SpecPhase[] = []
   const lines = spec.split('\n')
-  let currentPhase: Partial<SpecPhase> | null = null
+  let currentPhase: Partial<SpecPhase> & { workItems?: WorkItem[] } | null = null
   let desc: string[] = []
   let phaseNum = 0
+  let workItemCounter = 0
+
+  function pushPhase() {
+    if (currentPhase && currentPhase.title) {
+      phases.push({
+        id: `phase-${phaseNum}`,
+        number: phaseNum,
+        title: currentPhase.title,
+        description: desc.join(' ').trim(),
+        workItems: currentPhase.workItems && currentPhase.workItems.length > 0
+          ? currentPhase.workItems
+          : undefined,
+      })
+      desc = []
+    }
+  }
 
   for (const line of lines) {
-    const match = line.match(/^#{1,3}\s*(Phase\s*\d+[:\s]*.+)/i)
-    if (match) {
-      if (currentPhase && currentPhase.title) {
-        phases.push({
-          id: `phase-${phaseNum}`,
-          number: phaseNum,
-          title: currentPhase.title,
-          description: desc.join(' ').trim(),
-        })
-        desc = []
-      }
+    const phaseMatch = line.match(/^#{1,3}\s*(Phase\s*\d+[:\s]*.+)/i)
+    if (phaseMatch) {
+      pushPhase()
       phaseNum++
-      currentPhase = { title: match[1].replace(/^Phase\s*\d+[:\s]*/i, '').trim() }
-    } else if (currentPhase && line.trim()) {
+      currentPhase = {
+        title: phaseMatch[1].replace(/^Phase\s*\d+[:\s]*/i, '').trim(),
+        workItems: [],
+      }
+      continue
+    }
+
+    if (!currentPhase) continue
+
+    // Parse work item lines: - [module-name] | Tech: description | Epochs: N
+    const workMatch = line.match(/^-\s*\[([^\]]+)\]\s*\|\s*Tech:\s*(.+?)\s*\|\s*Epochs:\s*(\d+)/i)
+    if (workMatch) {
+      workItemCounter++
+      currentPhase.workItems = currentPhase.workItems || []
+      currentPhase.workItems.push({
+        id: `p${phaseNum}-w${currentPhase.workItems.length + 1}`,
+        title: workMatch[1].trim(),
+        tech: workMatch[2].trim(),
+        epochs: parseInt(workMatch[3], 10) || 2,
+        status: 'queued' as const,
+      })
+      continue
+    }
+
+    // Regular description line (skip empty lines and "Why This Will Work" section)
+    if (line.trim() && !line.match(/^#{1,3}\s/)) {
       desc.push(line.trim())
     }
   }
 
-  if (currentPhase?.title) {
-    phases.push({
-      id: `phase-${phaseNum}`,
-      number: phaseNum,
-      title: currentPhase.title,
-      description: desc.join(' ').trim(),
-    })
-  }
+  pushPhase()
 
   // Fallback phases if parsing yields nothing
   if (phases.length === 0) {

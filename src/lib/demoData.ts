@@ -104,7 +104,7 @@ export const DEMO_CONVERSATION = [
   {
     role: 'user' as const,
     content: `__TWEET_EMBED__`,
-    text: `I saw this idea last night and I want to try building it out —`,
+    text: `I had this idea last night and I want to try building it out —`,
   },
   {
     role: 'assistant' as const,

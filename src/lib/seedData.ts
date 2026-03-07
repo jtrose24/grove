@@ -35,11 +35,11 @@ export interface SeedIdea {
 export const SEED_PLANTERS: Planter[] = [
   { id: 'pl-1', name: 'Sreeram Kannan', handle: 'saborchain', avatar: '🧬' },
   { id: 'pl-2', name: 'Gajesh Naik', handle: 'gaborchain', avatar: '🔮' },
-  { id: 'pl-3', name: 'Vignesh Muralidharan', handle: 'vigneshka', avatar: '🌐' },
+  { id: 'pl-3', name: 'Chainyoda', handle: 'chainyoda', avatar: '🌐' },
   { id: 'pl-4', name: 'Gautham', handle: 'gauthamzz', avatar: '🛡' },
   { id: 'pl-5', name: 'Andrew Miller', handle: 'socaborchain', avatar: '🔬' },
   { id: 'pl-6', name: 'Xyn', handle: 'xyn_ai', avatar: '⚡' },
-  { id: 'pl-7', name: 'Calvin Liu', handle: 'calvinlieu', avatar: '📊' },
+  { id: 'pl-7', name: 'Nader Dabit', handle: 'dabit3', avatar: '📊' },
   { id: 'pl-8', name: 'Ali Yahya', handle: 'alive_eth', avatar: '🧠' },
   { id: 'pl-9', name: 'Hasu', handle: 'hasufl', avatar: '🏛' },
   { id: 'pl-10', name: 'Tarun Chitra', handle: 'tarunchitra', avatar: '📐' },
