@@ -134,7 +134,8 @@ export default function HomePage() {
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/grow')}
                   className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Start Planting</motion.button>
                 <button onClick={() => router.push('/grow?demo=true')} className="px-7 py-3.5 rounded-xl text-[#e8e6e3]/40 hover:text-[#e8e6e3]/70 transition-colors text-sm">Watch Demo</button>
-                <button onClick={() => router.push('/explore')} className="px-7 py-3.5 rounded-xl border border-[#7b8a6e]/20 text-[#7b8a6e] hover:text-[#8a9a7b] hover:border-[#7b8a6e]/35 transition-all text-sm">Explore</button>
+                <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/vote')}
+                  className="px-7 py-3.5 rounded-xl border border-[#c4a862]/25 text-[#c4a862] hover:bg-[#c4a862]/10 hover:border-[#c4a862]/40 transition-all text-sm font-medium">Vote & Earn</motion.button>
               </div>
             </motion.div>
           </div>
@@ -155,9 +156,12 @@ export default function HomePage() {
                 <p className="text-2xl font-semibold tracking-[-0.02em] text-[#e8e6e3]/80">{s.value}</p>
                 <p className="text-[11px] font-mono text-[#e8e6e3]/25 mt-1">{s.label}</p>
               </div>
-              {i < 3 && <div className="w-px h-8 bg-[#e8e6e3]/[0.05]" />}
+              <div className="w-px h-8 bg-[#e8e6e3]/[0.05]" />
             </div>
           ))}
+          <button onClick={() => router.push('/explore')} className="text-[#7b8a6e] hover:text-[#8a9a7b] text-sm font-medium transition-colors whitespace-nowrap">
+            Explore all →
+          </button>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.7 }} className="py-20 border-t border-[#e8e6e3]/[0.05]">

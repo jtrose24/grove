@@ -1,7 +1,8 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { useGroveStore } from '@/lib/store'
+import { useAuthStore } from '@/lib/authStore'
 import TopNav from '@/components/TopNav'
 import ChatInterface from '@/components/ChatInterface'
 import SpecGenerator from '@/components/SpecGenerator'
@@ -12,6 +13,13 @@ function GrowPageInner() {
   const { phase } = useGroveStore()
   const searchParams = useSearchParams()
   const isDemo = searchParams.get('demo') === 'true'
+  const { user, signInAs } = useAuthStore()
+
+  useEffect(() => {
+    if (isDemo && !user) {
+      signInAs('pl-ac')
+    }
+  }, [isDemo, user, signInAs])
 
   const PHASE_LABELS: Record<string, string> = {
     ideation: 'Plant your idea',

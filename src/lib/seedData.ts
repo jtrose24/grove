@@ -45,6 +45,7 @@ export const SEED_PLANTERS: Planter[] = [
   { id: 'pl-10', name: 'Tarun Chitra', handle: 'tarunchitra', avatar: '📐' },
   { id: 'pl-11', name: 'Robert Leshner', handle: 'rleshner', avatar: '🏦' },
   { id: 'pl-12', name: 'Stani Kulechov', handle: 'staborchain', avatar: '👻' },
+  { id: 'pl-ac', name: 'Andrew Chen', handle: 'andrewchen', avatar: '🧠' },
 ]
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
