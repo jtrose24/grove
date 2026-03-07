@@ -1,6 +1,6 @@
 export const SAGE_TOKEN = {
-  name: '$SAGE',
-  fullName: 'Sage',
+  name: '$SOVRA',
+  fullName: 'Sovra',
   tagline: 'The native token of Grove',
 }
 
@@ -277,7 +277,7 @@ export const DEMO_SPEC_PHASES = [
       {
         id: 'p4-w4',
         title: 'contributor-governance',
-        tech: '$SAGE token-weighted governance for Sovra policy changes. Proposals: editorial policy updates, revenue split changes, new platform integrations. Voting via Snapshot + on-chain execution via timelock.',
+        tech: '$SOVRA token-weighted governance for Sovra policy changes. Proposals: editorial policy updates, revenue split changes, new platform integrations. Voting via Snapshot + on-chain execution via timelock.',
         epochs: 3,
         status: 'queued' as const,
         deps: ['p4-w3'],
@@ -296,7 +296,7 @@ Deploy Sovra\u2019s decision-making brain inside a Trusted Execution Environment
 Wire up autonomous publishing to X/Twitter and Substack. X gets the single-panel cartoons with commentary threads for maximum reach. Substack gets the long-form cartoon series with deep analysis for subscriber retention. Unified analytics track what resonates, and an engagement optimizer feeds learnings back into topic selection and timing.
 
 ### Phase 4: Monetization & Governance
-Open two revenue streams: a marketplace for custom cartoon requests (users submit topics with bounties) and English auctions for original cartoon NFTs with full provenance metadata. Revenue flows into an agent-controlled treasury with programmable spend rules. $SAGE token holders govern policy changes, revenue splits, and platform expansion through on-chain proposals.
+Open two revenue streams: a marketplace for custom cartoon requests (users submit topics with bounties) and English auctions for original cartoon NFTs with full provenance metadata. Revenue flows into an agent-controlled treasury with programmable spend rules. $SOVRA token holders govern policy changes, revenue splits, and platform expansion through on-chain proposals.
 
 ## Why This Will Work
 Sovereign media agents are a new primitive \u2014 and editorial cartooning is the perfect first format. Cartoons are high-signal, instantly shareable, and carry a recognizable voice. By running inside a TEE with on-chain policy, Sovra\u2019s editorial independence is not a promise \u2014 it\u2019s a proof. The monetization loop is tight: free cartoons build audience, custom requests generate revenue, and auctions create collectible scarcity. The first sovereign media agent that\u2019s genuinely funny will build an audience faster than any human cartoonist \u2014 because it never sleeps, never misses a news cycle, and its editorial policy is verifiable by anyone.`

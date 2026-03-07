@@ -267,7 +267,7 @@ function Slide5() {
     { label: 'Expected Outcome', desc: 'Acceptance criteria and deliverables' },
     { label: 'Constraints', desc: 'Time, security, dependencies' },
     { label: 'Starting Bid', desc: 'USDC floor price for the work' },
-    { label: 'Token Reward', desc: '$SAGE allocation for the epoch' },
+    { label: 'Token Reward', desc: 'USDC allocation for the epoch' },
   ]
   return (
     <div className="flex flex-col items-center justify-center h-full px-8 max-w-4xl mx-auto">
@@ -519,7 +519,7 @@ function Slide8() {
               <circle cx="16" cy="16" r="14" fill="none" stroke={C.sage} strokeWidth="1.5" opacity="0.5" />
               <circle cx="16" cy="16" r="5" fill={C.sage} opacity="0.3" />
             </svg>
-            <span className="text-lg font-semibold" style={{ color: C.sage }}>$SAGE</span>
+            <span className="text-lg font-semibold" style={{ color: C.sage }}>USDC</span>
           </div>
           <p className="text-sm font-medium" style={{ color: `${C.text}bb` }}>Equity in the project.</p>
           <p className="text-xs" style={{ color: `${C.text}70` }}>
@@ -687,7 +687,7 @@ function Slide10() {
           {'\n'}
           <span style={{ color: C.sage }}>{'Arborist (QA)'}</span>
           {'  ──→  '}
-          <span style={{ color: C.gold }}>{'Payment (USDC + $SAGE)'}</span>
+          <span style={{ color: C.gold }}>{'Payment (USDC)'}</span>
         </pre>
       </motion.div>
       <motion.div
