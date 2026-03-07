@@ -2,6 +2,7 @@
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { getAggregateStats } from '@/lib/seedData'
+import WaitlistSignup from '@/components/WaitlistSignup'
 
 // ─── Generative branching SVG ────────────────────────────────────────────────
 
@@ -113,8 +114,8 @@ export default function HomePage() {
           </svg>
           <span className="text-[#e8e6e3] font-medium text-lg tracking-[-0.02em]">Grove</span>
         </div>
-        <div className="flex items-center gap-6">
-          <button onClick={() => router.push('/explore')} className="text-sm text-[#e8e6e3]/40 hover:text-[#e8e6e3]/70 transition-colors">Explore</button>
+        <div className="flex items-center gap-4">
+          <WaitlistSignup />
           <button onClick={() => router.push('/grow')} className="text-sm px-4 py-2 rounded-lg bg-[#e8e6e3]/[0.06] text-[#e8e6e3]/60 hover:bg-[#e8e6e3]/[0.1] hover:text-[#e8e6e3]/80 transition-all">Launch App</button>
         </div>
       </nav>

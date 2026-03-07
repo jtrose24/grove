@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useGroveStore, WorkItem, SpecPhase } from '@/lib/store'
 import { parseSpecPhases } from '@/lib/mockData'
 import { DEMO_SPEC_TEXT, DEMO_SPEC_PHASES } from '@/lib/demoData'
+import SpecFeedbackChat from './SpecFeedbackChat'
 
 interface Props {
   isDemo?: boolean
@@ -198,7 +199,8 @@ export default function SpecGenerator({ isDemo }: Props) {
   const displayPhases = done ? (isDemo ? DEMO_SPEC_PHASES : specPhases) : DEMO_SPEC_PHASES
 
   return (
-    <div className="flex h-full gap-4 p-4">
+    <div className="flex h-full gap-4 p-4 relative">
+      <SpecFeedbackChat isDemo={isDemo} />
       {/* Left: Spec stream */}
       <div className="w-[45%] flex flex-col min-w-0 flex-shrink-0">
         <div className="flex items-center gap-2 mb-3">

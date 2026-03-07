@@ -1,22 +1,22 @@
 'use client'
-import { useEffect } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import { Suspense } from 'react'
 import { useVoteStore } from '@/lib/voteStore'
 import OnboardingFlow from '@/components/vote/OnboardingFlow'
 import VotingExperience from '@/components/vote/VotingExperience'
 
 function VotePageInner() {
-  const searchParams = useSearchParams()
   const onboardingCompleted = useVoteStore((s) => s.onboardingCompleted)
   const fullReset = useVoteStore((s) => s.fullReset)
+  const [ready, setReady] = useState(false)
 
+  // Always reset on mount so the demo always starts fresh
   useEffect(() => {
-    if (searchParams.get('reset') === 'true') {
-      fullReset()
-      window.history.replaceState({}, '', '/vote')
-    }
-  }, [searchParams, fullReset])
+    fullReset()
+    setReady(true)
+  }, [fullReset])
+
+  if (!ready) return null
 
   if (!onboardingCompleted) {
     return <OnboardingFlow />

@@ -16,7 +16,7 @@ function GrowPageInner() {
   const { user, signInAs } = useAuthStore()
 
   useEffect(() => {
-    if (isDemo && !user) {
+    if (isDemo && (!user || user.id !== 'pl-ac')) {
       signInAs('pl-ac')
     }
   }, [isDemo, user, signInAs])
