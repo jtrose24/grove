@@ -773,6 +773,7 @@ export default function RebrandPage() {
           sectionId="marea"
           sectionNumber={3}
           brand={MAREA}
+          previewLink="/preview/marea"
           accentColor="#3eb8c8"
         />
 
@@ -781,6 +782,7 @@ export default function RebrandPage() {
           sectionId="foundra"
           sectionNumber={4}
           brand={FOUNDRA}
+          previewLink="/preview/foundra"
           accentColor="#e85530"
         />
 
