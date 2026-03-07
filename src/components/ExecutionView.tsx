@@ -12,18 +12,18 @@ const LOG_ICON: Record<string, string> = {
 }
 
 const LOG_COLOR: Record<string, string> = {
-  info: 'text-white/50',
-  success: 'text-emerald-400',
-  deploy: 'text-[#C6A85E]',
+  info: 'text-[#e8e6e3]/50',
+  success: 'text-[#8a9a7b]',
+  deploy: 'text-[#c4a862]',
 }
 
 const METRIC_CONFIG = [
   { key: 'users' as const, label: 'Users', format: (v: number) => v.toLocaleString(), suffix: '', color: 'from-blue-500 to-blue-400' },
-  { key: 'revenue' as const, label: 'Revenue', format: (v: number) => `$${v.toLocaleString()}`, suffix: '', color: 'from-[#C6A85E] to-amber-400' },
+  { key: 'revenue' as const, label: 'Revenue', format: (v: number) => `$${v.toLocaleString()}`, suffix: '', color: 'from-[#c4a862] to-[#d4b872]' },
   { key: 'conversion' as const, label: 'Conversion', format: (v: number) => `${v}%`, suffix: '', color: 'from-purple-500 to-purple-400' },
-  { key: 'engagement' as const, label: 'Engagement', format: (v: number) => `${v}%`, suffix: '', color: 'from-emerald-500 to-emerald-400' },
+  { key: 'engagement' as const, label: 'Engagement', format: (v: number) => `${v}%`, suffix: '', color: 'from-[#7b8a6e] to-[#8a9a7b]' },
   { key: 'traffic' as const, label: 'Traffic', format: (v: number) => v.toLocaleString(), suffix: '/day', color: 'from-sky-500 to-sky-400' },
-  { key: 'completion' as const, label: 'Build Progress', format: (v: number) => `${v}%`, suffix: '', color: 'from-[#1F5A45] to-emerald-500' },
+  { key: 'completion' as const, label: 'Build Progress', format: (v: number) => `${v}%`, suffix: '', color: 'from-[#7b8a6e] to-[#8a9a7b]' },
 ]
 
 export default function ExecutionView() {
@@ -65,9 +65,9 @@ export default function ExecutionView() {
       {/* Left: Activity feed */}
       <div className="flex-1 flex flex-col min-w-0">
         <div className="flex items-center gap-2 mb-3">
-          <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-          <span className="text-[#C6A85E] text-sm font-semibold uppercase tracking-wider">Live Build</span>
-          <span className="text-white/30 text-xs">— {winnerName} executing</span>
+          <span className="w-2 h-2 bg-[#8a9a7b] rounded-full animate-pulse" />
+          <span className="text-[#c4a862] text-sm font-semibold uppercase tracking-wider">Live Build</span>
+          <span className="text-[#e8e6e3]/30 text-xs">— {winnerName} executing</span>
         </div>
 
         {/* Metrics grid */}
@@ -75,9 +75,9 @@ export default function ExecutionView() {
           {METRIC_CONFIG.map(({ key, label, format, color }) => (
             <motion.div
               key={key}
-              className="bg-white/5 border border-white/8 rounded-xl p-3"
+              className="bg-[#e8e6e3]/5 border border-[#e8e6e3]/8 rounded-xl p-3"
             >
-              <p className="text-white/40 text-xs mb-1">{label}</p>
+              <p className="text-[#e8e6e3]/40 text-xs mb-1">{label}</p>
               <motion.p
                 key={metrics[key]}
                 initial={{ opacity: 0.5, y: -4 }}
@@ -86,7 +86,7 @@ export default function ExecutionView() {
               >
                 {format(metrics[key])}
               </motion.p>
-              <div className="mt-1.5 h-0.5 bg-white/8 rounded-full overflow-hidden">
+              <div className="mt-1.5 h-0.5 bg-[#e8e6e3]/8 rounded-full overflow-hidden">
                 <motion.div
                   className={`h-full bg-gradient-to-r ${color} rounded-full`}
                   animate={{ width: `${Math.min(100, (metrics[key] / (key === 'revenue' ? 5000 : key === 'users' ? 500 : key === 'traffic' ? 2000 : 100)) * 100)}%` }}
@@ -100,7 +100,7 @@ export default function ExecutionView() {
         {/* Log stream */}
         <div
           ref={logsRef}
-          className="flex-1 overflow-y-auto bg-black/30 border border-white/8 rounded-2xl p-4 font-mono text-xs space-y-1.5"
+          className="flex-1 overflow-y-auto bg-black/30 border border-[#e8e6e3]/8 rounded-2xl p-4 font-mono text-xs space-y-1.5"
         >
           <AnimatePresence>
             {executionLogs.map((log) => (
@@ -116,15 +116,15 @@ export default function ExecutionView() {
             ))}
           </AnimatePresence>
           {executionLogs.length === 0 && (
-            <p className="text-white/20">Initializing build environment...</p>
+            <p className="text-[#e8e6e3]/20">Initializing build environment...</p>
           )}
         </div>
       </div>
 
       {/* Right: Growth tree */}
       <div className="w-64 flex-shrink-0 flex flex-col">
-        <p className="text-[#C6A85E] text-sm font-semibold uppercase tracking-wider mb-3">Growth</p>
-        <div className="flex-1 bg-white/3 border border-white/8 rounded-2xl overflow-hidden">
+        <p className="text-[#c4a862] text-sm font-semibold uppercase tracking-wider mb-3">Growth</p>
+        <div className="flex-1 bg-[#e8e6e3]/3 border border-[#e8e6e3]/8 rounded-2xl overflow-hidden">
           <GrowthTree metrics={metrics} />
         </div>
 
@@ -134,12 +134,12 @@ export default function ExecutionView() {
             {Object.entries(selectedBids).map(([phaseId, bid]) => {
               const phase = specPhases.find((p) => p.id === phaseId)
               return (
-                <div key={phaseId} className="bg-white/4 border border-white/8 rounded-xl p-3">
-                  <p className="text-white/30 text-xs mb-1">{phase?.title || phaseId}</p>
+                <div key={phaseId} className="bg-[#e8e6e3]/4 border border-[#e8e6e3]/8 rounded-xl p-3">
+                  <p className="text-[#e8e6e3]/30 text-xs mb-1">{phase?.title || phaseId}</p>
                   <div className="flex items-center gap-2">
                     <span>{bid.builderAvatar}</span>
-                    <span className="text-white/70 text-xs font-medium">{bid.builderName}</span>
-                    <span className="ml-auto text-[#C6A85E] text-xs">{bid.cost.toLocaleString()} USDC</span>
+                    <span className="text-[#e8e6e3]/70 text-xs font-medium">{bid.builderName}</span>
+                    <span className="ml-auto text-[#c4a862] text-xs">{bid.cost.toLocaleString()} USDC</span>
                   </div>
                 </div>
               )

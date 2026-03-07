@@ -23,7 +23,7 @@ export default function GrowthTree({ metrics }: Props) {
       {/* Ground */}
       <motion.ellipse
         cx="100" cy="265" rx="60" ry="8"
-        fill="#0E2F24"
+        fill="#1a1a19"
         opacity={0.6}
         initial={{ rx: 10 }}
         animate={{ rx: 60 }}
@@ -33,7 +33,7 @@ export default function GrowthTree({ metrics }: Props) {
       {/* Roots */}
       <motion.path
         d="M85 250 Q70 260 55 268 M100 252 Q100 265 100 272 M115 250 Q130 262 145 268"
-        stroke="#1F5A45"
+        stroke="#7b8a6e"
         strokeWidth="3"
         fill="none"
         strokeLinecap="round"
@@ -45,7 +45,7 @@ export default function GrowthTree({ metrics }: Props) {
       {/* Trunk */}
       <motion.path
         d="M90 250 Q88 220 92 190 Q95 160 93 130 Q95 110 100 95"
-        stroke="#2d6e50"
+        stroke="#7b8a6e"
         strokeWidth="10"
         fill="none"
         strokeLinecap="round"
@@ -55,7 +55,7 @@ export default function GrowthTree({ metrics }: Props) {
       />
       <motion.path
         d="M110 250 Q112 220 108 190 Q105 160 107 130 Q105 110 100 95"
-        stroke="#1F5A45"
+        stroke="#7b8a6e"
         strokeWidth="6"
         fill="none"
         strokeLinecap="round"
@@ -67,7 +67,7 @@ export default function GrowthTree({ metrics }: Props) {
       {/* Main branches */}
       <motion.path
         d="M97 160 Q75 145 55 135 M100 140 Q80 120 65 105 M103 155 Q120 138 140 128 M100 135 Q118 115 132 100"
-        stroke="#1F5A45"
+        stroke="#7b8a6e"
         strokeWidth="4"
         fill="none"
         strokeLinecap="round"
@@ -79,7 +79,7 @@ export default function GrowthTree({ metrics }: Props) {
       {/* Secondary branches */}
       <motion.path
         d="M70 140 Q55 128 45 118 M75 130 Q62 115 55 100 M130 133 Q145 120 155 110 M125 128 Q138 112 145 98"
-        stroke="#2d6e50"
+        stroke="#7b8a6e"
         strokeWidth="2.5"
         fill="none"
         strokeLinecap="round"
@@ -101,7 +101,7 @@ export default function GrowthTree({ metrics }: Props) {
           cx={circle.cx}
           cy={circle.cy}
           r={circle.r}
-          fill={i === 1 ? '#1F5A45' : '#166840'}
+          fill={i === 1 ? '#7b8a6e' : '#8a9a7b'}
           opacity={0}
           initial={{ opacity: 0, scale: 0.3 }}
           animate={{
@@ -123,7 +123,7 @@ export default function GrowthTree({ metrics }: Props) {
           cx={pos.cx}
           cy={pos.cy}
           r={8}
-          fill="#22c55e"
+          fill="#8a9a7b"
           opacity={0}
           animate={{
             opacity: [0, leafDensity * 0.5, 0],
@@ -151,7 +151,7 @@ export default function GrowthTree({ metrics }: Props) {
             cx={pos.cx}
             cy={pos.cy}
             r={5}
-            fill="#C6A85E"
+            fill="#c4a862"
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 0.9, scale: 1 }}
             transition={{ duration: 0.5, delay: i * 0.3 }}
@@ -166,7 +166,7 @@ export default function GrowthTree({ metrics }: Props) {
           cx={30 + i * 35}
           cy={200}
           r={1.5}
-          fill="#C6A85E"
+          fill="#c4a862"
           animate={{
             cy: [200, 100 + i * 10, 50],
             opacity: [0, 0.6, 0],

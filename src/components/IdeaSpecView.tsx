@@ -7,15 +7,15 @@ function PhaseAccordion({ phase, index }: { phase: SpecPhase; index: number }) {
   const [open, setOpen] = useState(index === 0)
 
   return (
-    <div className="border border-white/8 rounded-xl overflow-hidden bg-white/[0.02]">
+    <div className="border border-[#e8e6e3]/8 rounded-xl overflow-hidden bg-[#e8e6e3]/[0.02]">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-white/[0.03] transition-colors"
+        className="w-full flex items-center gap-3 px-4 py-3 text-left hover:bg-[#e8e6e3]/[0.03] transition-colors"
       >
         <motion.svg
           animate={{ rotate: open ? 90 : 0 }}
           transition={{ duration: 0.15 }}
-          className="w-3 h-3 text-white/30 flex-shrink-0"
+          className="w-3 h-3 text-[#e8e6e3]/30 flex-shrink-0"
           viewBox="0 0 24 24"
           fill="none"
           stroke="currentColor"
@@ -28,10 +28,10 @@ function PhaseAccordion({ phase, index }: { phase: SpecPhase; index: number }) {
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
-            <span className="text-white/25 text-[10px] font-mono font-bold">P{phase.number}</span>
-            <span className="text-white/80 text-xs font-semibold truncate">{phase.title}</span>
+            <span className="text-[#e8e6e3]/25 text-[10px] font-mono font-bold">P{phase.number}</span>
+            <span className="text-[#e8e6e3]/80 text-xs font-semibold truncate">{phase.title}</span>
           </div>
-          <p className="text-white/30 text-[10px] font-mono mt-0.5 truncate">{phase.description}</p>
+          <p className="text-[#e8e6e3]/30 text-[10px] font-mono mt-0.5 truncate">{phase.description}</p>
         </div>
       </button>
 
@@ -44,25 +44,25 @@ function PhaseAccordion({ phase, index }: { phase: SpecPhase; index: number }) {
             transition={{ duration: 0.2 }}
             className="overflow-hidden"
           >
-            <div className="px-4 pb-4 border-t border-white/5 pt-3">
-              <p className="text-white/50 text-xs leading-relaxed font-mono">{phase.description}</p>
+            <div className="px-4 pb-4 border-t border-[#e8e6e3]/5 pt-3">
+              <p className="text-[#e8e6e3]/50 text-xs leading-relaxed font-mono">{phase.description}</p>
               {phase.workItems && phase.workItems.length > 0 && (
                 <div className="mt-3 space-y-2">
                   {phase.workItems.map((item) => (
-                    <div key={item.id} className="flex items-start gap-3 py-2 px-3 rounded-lg bg-black/20 border border-white/5">
+                    <div key={item.id} className="flex items-start gap-3 py-2 px-3 rounded-lg bg-black/20 border border-[#e8e6e3]/5">
                       <div className="flex-shrink-0 mt-1.5">
                         <div className={`w-2 h-2 rounded-full ${
-                          item.status === 'done' ? 'bg-emerald-400' :
-                          item.status === 'active' ? 'bg-[#C6A85E] animate-pulse' :
-                          'bg-white/20'
+                          item.status === 'done' ? 'bg-[#8a9a7b]' :
+                          item.status === 'active' ? 'bg-[#c4a862] animate-pulse' :
+                          'bg-[#e8e6e3]/20'
                         }`} />
                       </div>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2 mb-1">
-                          <code className="text-[#C6A85E] text-xs font-mono font-bold">{item.title}</code>
-                          <span className="text-white/20 text-[10px] font-mono">{item.epochs}ep</span>
+                          <code className="text-[#c4a862] text-xs font-mono font-bold">{item.title}</code>
+                          <span className="text-[#e8e6e3]/20 text-[10px] font-mono">{item.epochs}ep</span>
                         </div>
-                        <p className="text-white/45 text-[11px] font-mono leading-relaxed">{item.tech}</p>
+                        <p className="text-[#e8e6e3]/45 text-[11px] font-mono leading-relaxed">{item.tech}</p>
                       </div>
                     </div>
                   ))}
@@ -82,12 +82,12 @@ export default function IdeaSpecView({ spec, specPhases }: { spec?: string; spec
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <span className="text-[#C6A85E] text-xs font-mono font-bold uppercase tracking-wider">Spec</span>
+        <span className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">Spec</span>
       </div>
 
       {/* Raw spec text */}
       {spec && (
-        <div className="bg-black/30 rounded-xl border border-white/8 p-4 text-xs text-white/60 leading-relaxed font-mono whitespace-pre-wrap max-h-64 overflow-y-auto">
+        <div className="bg-black/30 rounded-xl border border-[#e8e6e3]/8 p-4 text-xs text-[#e8e6e3]/60 leading-relaxed font-mono whitespace-pre-wrap max-h-64 overflow-y-auto">
           {spec}
         </div>
       )}

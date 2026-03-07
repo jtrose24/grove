@@ -44,26 +44,26 @@ function StageIndicator({ currentStage }: { currentStage: EpochStage }) {
             <div
               className={`flex items-center gap-2 px-2.5 py-1 rounded-full font-mono transition-all duration-300 ${
                 isActive
-                  ? 'bg-[#C6A85E]/15 text-[#C6A85E] border border-[#C6A85E]/30 text-sm font-bold'
+                  ? 'bg-[#c4a862]/15 text-[#c4a862] border border-[#c4a862]/30 text-sm font-bold'
                   : isDone
-                  ? 'text-emerald-400/60 text-[10px]'
-                  : 'text-white/15 text-[10px]'
+                  ? 'text-[#8a9a7b]/60 text-[10px]'
+                  : 'text-[#e8e6e3]/15 text-[10px]'
               }`}
             >
               <span
                 className={`rounded-full transition-all duration-300 ${
                   isActive
-                    ? 'w-2 h-2 bg-[#C6A85E] animate-pulse'
+                    ? 'w-2 h-2 bg-[#c4a862] animate-pulse'
                     : isDone
-                    ? 'w-1.5 h-1.5 bg-emerald-400/60'
-                    : 'w-1.5 h-1.5 bg-white/10'
+                    ? 'w-1.5 h-1.5 bg-[#8a9a7b]/60'
+                    : 'w-1.5 h-1.5 bg-[#e8e6e3]/10'
                 }`}
               />
               <span>{step.label}</span>
             </div>
             {i < STAGE_STEPS.length - 1 && (
               <div
-                className={`w-4 h-px mx-0.5 transition-all duration-500 ${isDone ? 'bg-emerald-400/30' : 'bg-white/8'}`}
+                className={`w-4 h-px mx-0.5 transition-all duration-500 ${isDone ? 'bg-[#8a9a7b]/30' : 'bg-[#e8e6e3]/8'}`}
               />
             )}
           </div>
@@ -80,12 +80,12 @@ function TreasuryBalance({ spent }: { spent: number }) {
 
   return (
     <div className="relative" onMouseEnter={() => setHovered(true)} onMouseLeave={() => setHovered(false)}>
-      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.03] border border-white/6 cursor-default">
-        <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/60" />
-        <span className="text-white/50 text-[11px] font-mono">
+      <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#e8e6e3]/[0.03] border border-[#e8e6e3]/6 cursor-default">
+        <div className="w-1.5 h-1.5 rounded-full bg-[#7b8a6e]/60" />
+        <span className="text-[#e8e6e3]/50 text-[11px] font-mono">
           {balance.toLocaleString('en-US', { minimumFractionDigits: 2 })}
         </span>
-        <span className="text-white/25 text-[10px] font-mono">USDC</span>
+        <span className="text-[#e8e6e3]/25 text-[10px] font-mono">USDC</span>
       </div>
 
       <AnimatePresence>
@@ -95,20 +95,20 @@ function TreasuryBalance({ spent }: { spent: number }) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full mt-2 left-0 z-50 px-3 py-2.5 rounded-xl bg-[#0a1510] border border-white/10 shadow-xl shadow-black/40 whitespace-nowrap"
+            className="absolute top-full mt-2 left-0 z-50 px-3 py-2.5 rounded-xl bg-[#1a1a19] border border-[#e8e6e3]/10 shadow-xl shadow-black/40 whitespace-nowrap"
           >
-            <p className="text-white/70 text-[10px] font-mono mb-1.5">seed funding</p>
-            <p className="text-white/30 text-[10px] font-mono mb-0.5">
-              0x7a2E...c4F8 <span className="text-white/15">(Eigen Foundation)</span>
+            <p className="text-[#e8e6e3]/70 text-[10px] font-mono mb-1.5">seed funding</p>
+            <p className="text-[#e8e6e3]/30 text-[10px] font-mono mb-0.5">
+              0x7a2E...c4F8 <span className="text-[#e8e6e3]/15">(Eigen Foundation)</span>
             </p>
-            <div className="flex items-center gap-2 mt-2 pt-2 border-t border-white/6">
-              <span className="text-white/25 text-[10px] font-mono">funded</span>
-              <span className="text-emerald-400/60 text-[10px] font-mono">10,000.00 USDC</span>
+            <div className="flex items-center gap-2 mt-2 pt-2 border-t border-[#e8e6e3]/6">
+              <span className="text-[#e8e6e3]/25 text-[10px] font-mono">funded</span>
+              <span className="text-[#8a9a7b]/60 text-[10px] font-mono">10,000.00 USDC</span>
             </div>
             {spent > 0 && (
               <div className="flex items-center gap-2 mt-1">
-                <span className="text-white/25 text-[10px] font-mono">allocated</span>
-                <span className="text-[#C6A85E]/60 text-[10px] font-mono">
+                <span className="text-[#e8e6e3]/25 text-[10px] font-mono">allocated</span>
+                <span className="text-[#c4a862]/60 text-[10px] font-mono">
                   -{spent.toLocaleString('en-US', { minimumFractionDigits: 2 })} USDC
                 </span>
               </div>
@@ -150,8 +150,8 @@ function AgentActivitySidebar({ bidCount }: { bidCount: number }) {
   return (
     <div className="w-44 flex-shrink-0 flex flex-col">
       <div className="flex items-center gap-2 mb-3">
-        <span className="text-white/25 text-[10px] font-mono uppercase tracking-wider">agents</span>
-        <span className="text-[#C6A85E]/40 text-[10px] font-mono">{activeCount} active</span>
+        <span className="text-[#e8e6e3]/25 text-[10px] font-mono uppercase tracking-wider">agents</span>
+        <span className="text-[#c4a862]/40 text-[10px] font-mono">{activeCount} active</span>
       </div>
 
       <div className="flex-1 space-y-1.5 overflow-y-auto">
@@ -160,14 +160,14 @@ function AgentActivitySidebar({ bidCount }: { bidCount: number }) {
             key={agent.id}
             animate={{ opacity: agent.active ? 1 : 0.3 }}
             transition={{ duration: 0.3 }}
-            className="px-2.5 py-2 rounded-lg bg-white/[0.02] border border-white/5"
+            className="px-2.5 py-2 rounded-lg bg-[#e8e6e3]/[0.02] border border-[#e8e6e3]/5"
           >
             <div className="flex items-center gap-2 mb-1">
               <span className="text-sm">{agent.avatar}</span>
-              <span className="text-white/60 text-[11px] font-medium truncate">{agent.name}</span>
+              <span className="text-[#e8e6e3]/60 text-[11px] font-medium truncate">{agent.name}</span>
               <span
                 className={`w-1.5 h-1.5 rounded-full ml-auto flex-shrink-0 ${
-                  agent.active ? 'bg-emerald-400/70 animate-pulse' : 'bg-white/10'
+                  agent.active ? 'bg-[#8a9a7b]/70 animate-pulse' : 'bg-[#e8e6e3]/10'
                 }`}
               />
             </div>
@@ -176,7 +176,7 @@ function AgentActivitySidebar({ bidCount }: { bidCount: number }) {
                 key={agent.status}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-white/20 text-[10px] font-mono leading-relaxed truncate"
+                className="text-[#e8e6e3]/20 text-[10px] font-mono leading-relaxed truncate"
               >
                 {agent.status}
               </motion.p>
@@ -186,10 +186,10 @@ function AgentActivitySidebar({ bidCount }: { bidCount: number }) {
       </div>
 
       {bidCount > 0 && (
-        <div className="mt-3 pt-3 border-t border-white/5">
+        <div className="mt-3 pt-3 border-t border-[#e8e6e3]/5">
           <div className="flex items-center justify-between text-[10px] font-mono">
-            <span className="text-white/20">bids placed</span>
-            <span className="text-white/40">{bidCount}</span>
+            <span className="text-[#e8e6e3]/20">bids placed</span>
+            <span className="text-[#e8e6e3]/40">{bidCount}</span>
           </div>
         </div>
       )}
@@ -224,41 +224,41 @@ function BidCard({ bid, phaseId }: { bid: Bid; phaseId: string }) {
       layout
       initial={{ opacity: 0, y: 16, scale: 0.97 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
-      className="relative rounded-2xl border border-white/10 bg-white/5 hover:border-white/20 p-4 transition-all duration-300"
+      className="relative rounded-2xl border border-[#e8e6e3]/10 bg-[#e8e6e3]/5 hover:border-[#e8e6e3]/20 p-4 transition-all duration-300"
     >
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-2">
           <span className="text-2xl">{bid.builderAvatar}</span>
           <div>
-            <p className="text-white/90 text-sm font-semibold">{bid.builderName}</p>
+            <p className="text-[#e8e6e3]/90 text-sm font-semibold">{bid.builderName}</p>
             <div className="flex items-center gap-1">
               <div className="flex gap-0.5">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <div
                     key={i}
-                    className={`w-1.5 h-1.5 rounded-full ${i < Math.round(bid.reputation / 20) ? 'bg-[#C6A85E]' : 'bg-white/15'}`}
+                    className={`w-1.5 h-1.5 rounded-full ${i < Math.round(bid.reputation / 20) ? 'bg-[#c4a862]' : 'bg-[#e8e6e3]/15'}`}
                   />
                 ))}
               </div>
-              <span className="text-white/40 text-xs">{bid.reputation}/100</span>
+              <span className="text-[#e8e6e3]/40 text-xs">{bid.reputation}/100</span>
             </div>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-[#C6A85E] text-sm font-bold">{bid.cost.toLocaleString()} USDC</p>
-          <p className="text-white/40 text-xs">{bid.predictedValue.toLocaleString()} est. value</p>
+          <p className="text-[#c4a862] text-sm font-bold">{bid.cost.toLocaleString()} USDC</p>
+          <p className="text-[#e8e6e3]/40 text-xs">{bid.predictedValue.toLocaleString()} est. value</p>
         </div>
       </div>
 
-      <p className="text-white/60 text-xs leading-relaxed mb-3">{bid.approach}</p>
+      <p className="text-[#e8e6e3]/60 text-xs leading-relaxed mb-3">{bid.approach}</p>
 
       <div className="mb-3">
-        <div className="flex justify-between text-xs text-white/40 mb-1">
+        <div className="flex justify-between text-xs text-[#e8e6e3]/40 mb-1">
           <span>{sentimentPct}% confidence</span>
           <span>{(bid.confidence * 100).toFixed(0)}% match</span>
         </div>
-        <div className="h-1.5 bg-white/10 rounded-full overflow-hidden flex">
-          <div className="bg-emerald-500/70 h-full transition-all duration-500" style={{ width: `${sentimentPct}%` }} />
+        <div className="h-1.5 bg-[#e8e6e3]/10 rounded-full overflow-hidden flex">
+          <div className="bg-[#7b8a6e]/70 h-full transition-all duration-500" style={{ width: `${sentimentPct}%` }} />
           <div className="bg-red-500/50 h-full flex-1" />
         </div>
       </div>
@@ -269,8 +269,8 @@ function BidCard({ bid, phaseId }: { bid: Bid; phaseId: string }) {
           disabled={!!userVote}
           className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-all ${
             userVote === 1
-              ? 'border-emerald-500 bg-emerald-500/20 text-emerald-400'
-              : 'border-white/15 text-white/50 hover:border-emerald-500/50 hover:text-emerald-400 disabled:opacity-40'
+              ? 'border-[#7b8a6e] bg-[#7b8a6e]/20 text-[#8a9a7b]'
+              : 'border-[#e8e6e3]/15 text-[#e8e6e3]/50 hover:border-[#7b8a6e]/50 hover:text-[#8a9a7b] disabled:opacity-40'
           }`}
         >
           👍 {bid.upvotes}
@@ -281,7 +281,7 @@ function BidCard({ bid, phaseId }: { bid: Bid; phaseId: string }) {
           className={`flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full border transition-all ${
             userVote === -1
               ? 'border-red-500 bg-red-500/20 text-red-400'
-              : 'border-white/15 text-white/50 hover:border-red-500/50 hover:text-red-400 disabled:opacity-40'
+              : 'border-[#e8e6e3]/15 text-[#e8e6e3]/50 hover:border-red-500/50 hover:text-red-400 disabled:opacity-40'
           }`}
         >
           👎 {bid.downvotes}
@@ -426,7 +426,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
       {/* ── Left: Epoch timeline ── */}
       <div className="w-48 flex-shrink-0 flex flex-col">
         <div className="flex items-center justify-between mb-2">
-          <p className="text-[#C6A85E] text-xs font-mono font-bold uppercase tracking-wider">Epochs</p>
+          <p className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">Epochs</p>
         </div>
         <TreasuryBalance spent={totalSpent} />
 
@@ -442,44 +442,44 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                   <div
                     className={`w-2.5 h-2.5 rounded-full mt-2.5 flex-shrink-0 ${
                       isDone
-                        ? 'bg-emerald-400/70'
+                        ? 'bg-[#8a9a7b]/70'
                         : isCurrent
-                        ? 'bg-[#C6A85E] animate-pulse shadow-sm shadow-[#C6A85E]/30'
-                        : 'bg-white/10'
+                        ? 'bg-[#c4a862] animate-pulse shadow-sm shadow-[#c4a862]/30'
+                        : 'bg-[#e8e6e3]/10'
                     }`}
                   />
                   {brief.epochNumber < DEMO_EPOCH_BRIEFS.length && (
-                    <div className={`w-px flex-1 my-1 ${isDone ? 'bg-emerald-400/20' : 'bg-white/6'}`} />
+                    <div className={`w-px flex-1 my-1 ${isDone ? 'bg-[#8a9a7b]/20' : 'bg-[#e8e6e3]/6'}`} />
                   )}
                 </div>
 
                 <div
                   className={`flex-1 rounded-lg px-2.5 py-2 mb-1 border transition-all ${
                     isCurrent
-                      ? 'border-[#C6A85E]/40 bg-[#1F5A45]/15'
+                      ? 'border-[#c4a862]/40 bg-[#7b8a6e]/15'
                       : isDone
-                      ? 'border-emerald-500/20 bg-white/[0.01]'
-                      : 'border-white/5 bg-white/[0.01]'
+                      ? 'border-[#7b8a6e]/20 bg-[#e8e6e3]/[0.01]'
+                      : 'border-[#e8e6e3]/5 bg-[#e8e6e3]/[0.01]'
                   }`}
                 >
                   <div className="flex items-center gap-1.5 mb-0.5">
                     <span
                       className={`text-[10px] font-mono font-bold ${
-                        isCurrent ? 'text-[#C6A85E]' : isDone ? 'text-emerald-400/60' : 'text-white/15'
+                        isCurrent ? 'text-[#c4a862]' : isDone ? 'text-[#8a9a7b]/60' : 'text-[#e8e6e3]/15'
                       }`}
                     >
                       E{brief.epochNumber}
                     </span>
                     {isCurrent && (
-                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-full border text-[#C6A85E] bg-[#C6A85E]/10 border-[#C6A85E]/30">
+                      <span className="text-[9px] font-mono px-1.5 py-0.5 rounded-full border text-[#c4a862] bg-[#c4a862]/10 border-[#c4a862]/30">
                         {epochStage}
                       </span>
                     )}
-                    {isDone && <span className="text-emerald-400/50 text-[9px] font-mono">settled</span>}
+                    {isDone && <span className="text-[#8a9a7b]/50 text-[9px] font-mono">settled</span>}
                   </div>
                   <p
                     className={`text-[11px] font-mono leading-snug ${
-                      isCurrent ? 'text-white/70' : isDone ? 'text-white/30' : 'text-white/15'
+                      isCurrent ? 'text-[#e8e6e3]/70' : isDone ? 'text-[#e8e6e3]/30' : 'text-[#e8e6e3]/15'
                     }`}
                   >
                     {brief.title}
@@ -487,7 +487,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                   {isDone && winnerForEpoch && (
                     <div className="flex items-center gap-1 mt-1">
                       <span className="text-[10px]">{winnerForEpoch.builderAvatar}</span>
-                      <span className="text-white/20 text-[10px] font-mono truncate">{winnerForEpoch.builderName}</span>
+                      <span className="text-[#e8e6e3]/20 text-[10px] font-mono truncate">{winnerForEpoch.builderName}</span>
                     </div>
                   )}
                 </div>
@@ -497,11 +497,11 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
 
           <div className="flex gap-2 pl-0.5">
             <div className="flex flex-col items-center w-5 flex-shrink-0">
-              <div className="w-1 h-1 rounded-full bg-white/8 mt-2" />
-              <div className="w-1 h-1 rounded-full bg-white/6 mt-1" />
-              <div className="w-1 h-1 rounded-full bg-white/4 mt-1" />
+              <div className="w-1 h-1 rounded-full bg-[#e8e6e3]/8 mt-2" />
+              <div className="w-1 h-1 rounded-full bg-[#e8e6e3]/6 mt-1" />
+              <div className="w-1 h-1 rounded-full bg-[#e8e6e3]/4 mt-1" />
             </div>
-            <p className="text-white/10 text-[10px] font-mono py-1">+{TOTAL_EPOCHS - DEMO_EPOCH_BRIEFS.length} more epochs</p>
+            <p className="text-[#e8e6e3]/10 text-[10px] font-mono py-1">+{TOTAL_EPOCHS - DEMO_EPOCH_BRIEFS.length} more epochs</p>
           </div>
         </div>
       </div>
@@ -511,9 +511,9 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
         {/* Top bar */}
         <div className="flex items-center justify-between mb-4 flex-shrink-0">
           <div className="flex items-center gap-3">
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#1F5A45]/20 border border-[#1F5A45]/40">
-              <span className="text-[#C6A85E] text-xs font-bold font-mono">E{epochNumber}</span>
-              <span className="text-white/20 text-[10px] font-mono">of {TOTAL_EPOCHS}</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#7b8a6e]/20 border border-[#7b8a6e]/40">
+              <span className="text-[#c4a862] text-xs font-bold font-mono">E{epochNumber}</span>
+              <span className="text-[#e8e6e3]/20 text-[10px] font-mono">of {TOTAL_EPOCHS}</span>
             </div>
             <StageIndicator currentStage={epochStage} />
           </div>
@@ -522,17 +522,17 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
             <div className="flex items-center gap-2">
               <div
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-full border ${
-                  timer < 10 ? 'border-red-500/60 bg-red-500/10' : 'border-white/20 bg-white/5'
+                  timer < 10 ? 'border-red-500/60 bg-red-500/10' : 'border-[#e8e6e3]/20 bg-[#e8e6e3]/5'
                 }`}
               >
-                <span className={`w-2 h-2 rounded-full ${timer < 10 ? 'bg-red-400 animate-pulse' : 'bg-[#C6A85E]'}`} />
-                <span className={`text-sm font-mono font-bold ${timer < 10 ? 'text-red-400' : 'text-white/80'}`}>
+                <span className={`w-2 h-2 rounded-full ${timer < 10 ? 'bg-red-400 animate-pulse' : 'bg-[#c4a862]'}`} />
+                <span className={`text-sm font-mono font-bold ${timer < 10 ? 'text-red-400' : 'text-[#e8e6e3]/80'}`}>
                   {mins}:{secs.toString().padStart(2, '0')}
                 </span>
               </div>
               <button
                 onClick={handleSelectWinner}
-                className="text-[10px] px-2.5 py-1.5 rounded-full border border-[#C6A85E]/30 text-[#C6A85E]/60 hover:bg-[#C6A85E]/10 transition-all font-mono"
+                className="text-[10px] px-2.5 py-1.5 rounded-full border border-[#c4a862]/30 text-[#c4a862]/60 hover:bg-[#c4a862]/10 transition-all font-mono"
               >
                 Select Now
               </button>
@@ -555,25 +555,25 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
               >
                 <div className="w-full max-w-2xl">
                   <div className="text-center mb-6">
-                    <p className="text-white/20 text-[10px] font-mono uppercase tracking-widest mb-2">
+                    <p className="text-[#e8e6e3]/20 text-[10px] font-mono uppercase tracking-widest mb-2">
                       Epoch {currentBrief.epochNumber} Brief
                     </p>
-                    <h2 className="text-white/90 text-xl font-bold font-mono">{currentBrief.title}</h2>
+                    <h2 className="text-[#e8e6e3]/90 text-xl font-bold font-mono">{currentBrief.title}</h2>
                   </div>
 
-                  <div className="rounded-xl border border-[#1F5A45]/40 bg-[#0a1a14] p-6 space-y-4">
+                  <div className="rounded-xl border border-[#7b8a6e]/40 bg-[#1a1a19] p-6 space-y-4">
                     <div>
-                      <p className="text-white/25 text-[10px] font-mono uppercase tracking-wider mb-1.5">scope</p>
-                      <p className="text-white/60 text-sm font-mono leading-relaxed">{currentBrief.scope}</p>
+                      <p className="text-[#e8e6e3]/25 text-[10px] font-mono uppercase tracking-wider mb-1.5">scope</p>
+                      <p className="text-[#e8e6e3]/60 text-sm font-mono leading-relaxed">{currentBrief.scope}</p>
                     </div>
 
                     <div>
-                      <p className="text-white/25 text-[10px] font-mono uppercase tracking-wider mb-1.5">expected outcome</p>
-                      <p className="text-emerald-400/70 text-sm font-mono leading-relaxed">{currentBrief.expectedOutcome}</p>
+                      <p className="text-[#e8e6e3]/25 text-[10px] font-mono uppercase tracking-wider mb-1.5">expected outcome</p>
+                      <p className="text-[#8a9a7b]/70 text-sm font-mono leading-relaxed">{currentBrief.expectedOutcome}</p>
                     </div>
 
                     <div>
-                      <p className="text-white/25 text-[10px] font-mono uppercase tracking-wider mb-2">constraints</p>
+                      <p className="text-[#e8e6e3]/25 text-[10px] font-mono uppercase tracking-wider mb-2">constraints</p>
                       <div className="space-y-1.5">
                         {currentBrief.constraints.map((c, i) => (
                           <motion.div
@@ -584,43 +584,43 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                             className="flex items-start gap-2"
                           >
                             <span className="text-red-400/50 text-xs font-mono mt-0.5 flex-shrink-0">!</span>
-                            <p className="text-white/40 text-xs font-mono leading-relaxed">{c}</p>
+                            <p className="text-[#e8e6e3]/40 text-xs font-mono leading-relaxed">{c}</p>
                           </motion.div>
                         ))}
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3 pt-3 border-t border-white/5">
-                      <div className="flex-1 bg-white/[0.03] rounded-lg px-4 py-3 border border-white/5">
-                        <p className="text-white/20 text-[10px] font-mono mb-0.5">starting bid</p>
-                        <p className="text-white/70 text-lg font-mono font-bold">
+                    <div className="flex items-center gap-3 pt-3 border-t border-[#e8e6e3]/5">
+                      <div className="flex-1 bg-[#e8e6e3]/[0.03] rounded-lg px-4 py-3 border border-[#e8e6e3]/5">
+                        <p className="text-[#e8e6e3]/20 text-[10px] font-mono mb-0.5">starting bid</p>
+                        <p className="text-[#e8e6e3]/70 text-lg font-mono font-bold">
                           {currentBrief.startingBid.toLocaleString()}{' '}
-                          <span className="text-white/30 text-xs">USDC</span>
+                          <span className="text-[#e8e6e3]/30 text-xs">USDC</span>
                         </p>
                       </div>
-                      <div className="flex-1 bg-[#1F5A45]/10 rounded-lg px-4 py-3 border border-[#1F5A45]/20">
-                        <p className="text-white/20 text-[10px] font-mono mb-0.5">completion reward</p>
-                        <p className="text-[#C6A85E] text-lg font-mono font-bold">
+                      <div className="flex-1 bg-[#7b8a6e]/10 rounded-lg px-4 py-3 border border-[#7b8a6e]/20">
+                        <p className="text-[#e8e6e3]/20 text-[10px] font-mono mb-0.5">completion reward</p>
+                        <p className="text-[#c4a862] text-lg font-mono font-bold">
                           {currentBrief.sageReward.toLocaleString()}{' '}
-                          <span className="text-[#C6A85E]/50 text-xs">{SAGE_TOKEN.name}</span>
+                          <span className="text-[#c4a862]/50 text-xs">{SAGE_TOKEN.name}</span>
                         </p>
                       </div>
                     </div>
 
                     {/* Payment note */}
-                    <p className="text-white/15 text-[10px] font-mono text-center pt-1">
+                    <p className="text-[#e8e6e3]/15 text-[10px] font-mono text-center pt-1">
                       payment held in escrow — released after Arborist QA + security audit
                     </p>
                   </div>
 
                   <div className="mt-5">
-                    <div className="h-1 bg-white/5 rounded-full overflow-hidden">
+                    <div className="h-1 bg-[#e8e6e3]/5 rounded-full overflow-hidden">
                       <motion.div
-                        className="h-full bg-gradient-to-r from-[#C6A85E]/40 to-[#C6A85E] rounded-full"
+                        className="h-full bg-[#c4a862] rounded-full"
                         style={{ width: `${briefProgress * 100}%` }}
                       />
                     </div>
-                    <p className="text-white/15 text-[10px] font-mono mt-2 text-center">
+                    <p className="text-[#e8e6e3]/15 text-[10px] font-mono mt-2 text-center">
                       Opening bidding in {Math.max(1, Math.ceil((1 - briefProgress) * 3.5))}s...
                     </p>
                   </div>
@@ -638,15 +638,15 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                 transition={{ duration: 0.3 }}
               >
                 {currentBrief && (
-                  <div className="mb-4 px-4 py-2.5 rounded-lg bg-[#0a1a14] border border-[#1F5A45]/20 flex items-center gap-4">
-                    <code className="text-[#C6A85E] text-xs font-mono font-bold flex-shrink-0">{currentBrief.title}</code>
-                    <span className="text-white/10">|</span>
-                    <span className="text-white/30 text-[10px] font-mono truncate flex-1">
+                  <div className="mb-4 px-4 py-2.5 rounded-lg bg-[#1a1a19] border border-[#7b8a6e]/20 flex items-center gap-4">
+                    <code className="text-[#c4a862] text-xs font-mono font-bold flex-shrink-0">{currentBrief.title}</code>
+                    <span className="text-[#e8e6e3]/10">|</span>
+                    <span className="text-[#e8e6e3]/30 text-[10px] font-mono truncate flex-1">
                       {currentBrief.scope.slice(0, 90)}...
                     </span>
                     <div className="flex items-center gap-3 flex-shrink-0">
-                      <span className="text-white/40 text-[10px] font-mono">{currentBrief.startingBid} USDC</span>
-                      <span className="text-[#C6A85E]/40 text-[10px] font-mono">
+                      <span className="text-[#e8e6e3]/40 text-[10px] font-mono">{currentBrief.startingBid} USDC</span>
+                      <span className="text-[#c4a862]/40 text-[10px] font-mono">
                         {currentBrief.sageReward.toLocaleString()} {SAGE_TOKEN.name}
                       </span>
                     </div>
@@ -655,8 +655,8 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
 
                 <div className="space-y-3">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-white/25 text-[10px] font-mono uppercase tracking-wider">bids</span>
-                    <span className="text-white/15 text-[10px] font-mono">{phaseBids.length} submitted</span>
+                    <span className="text-[#e8e6e3]/25 text-[10px] font-mono uppercase tracking-wider">bids</span>
+                    <span className="text-[#e8e6e3]/15 text-[10px] font-mono">{phaseBids.length} submitted</span>
                   </div>
 
                   <AnimatePresence>
@@ -666,7 +666,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                   </AnimatePresence>
 
                   {phaseBids.length === 0 && (
-                    <div className="text-center text-white/20 text-sm mt-12 font-mono">
+                    <div className="text-center text-[#e8e6e3]/20 text-sm mt-12 font-mono">
                       Waiting for builders to submit bids...
                     </div>
                   )}
@@ -696,9 +696,9 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                       {winner.builderAvatar}
                     </motion.div>
                     <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }}>
-                      <p className="text-[#C6A85E] text-[10px] font-mono uppercase tracking-widest mb-1">Winning Bid</p>
-                      <h2 className="text-white/90 text-2xl font-bold mb-1">{winner.builderName}</h2>
-                      <p className="text-white/40 text-sm font-mono">
+                      <p className="text-[#c4a862] text-[10px] font-mono uppercase tracking-widest mb-1">Winning Bid</p>
+                      <h2 className="text-[#e8e6e3]/90 text-2xl font-bold mb-1">{winner.builderName}</h2>
+                      <p className="text-[#e8e6e3]/40 text-sm font-mono">
                         {winner.cost.toLocaleString()} USDC bid · {(winner.confidence * 100).toFixed(0)}% confidence · {winner.reputation}/100 rep
                       </p>
                     </motion.div>
@@ -709,37 +709,37 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1 }}
-                    className="rounded-xl bg-black/30 border border-emerald-500/10 p-5 font-mono text-xs space-y-2.5"
+                    className="rounded-xl bg-black/30 border border-[#7b8a6e]/10 p-5 font-mono text-xs space-y-2.5"
                   >
-                    <div className="flex items-center gap-2 mb-3 pb-2.5 border-b border-white/5">
-                      <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse" />
-                      <span className="text-emerald-400/70 text-[10px] uppercase tracking-wider">Building</span>
-                      <span className="text-white/15 text-[10px] ml-auto">~30min–24hr in production</span>
+                    <div className="flex items-center gap-2 mb-3 pb-2.5 border-b border-[#e8e6e3]/5">
+                      <span className="w-2 h-2 bg-[#8a9a7b] rounded-full animate-pulse" />
+                      <span className="text-[#8a9a7b]/70 text-[10px] uppercase tracking-wider">Building</span>
+                      <span className="text-[#e8e6e3]/15 text-[10px] ml-auto">~30min–24hr in production</span>
                     </div>
 
                     <motion.div
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1.3 }}
-                      className="flex items-start gap-2 text-white/50"
+                      className="flex items-start gap-2 text-[#e8e6e3]/50"
                     >
-                      <span className="text-white/30 mt-px">→</span>
+                      <span className="text-[#e8e6e3]/30 mt-px">→</span>
                       <span>Analyzing spec constraints for {currentBrief?.title || 'module'}...</span>
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1.8 }}
-                      className="flex items-start gap-2 text-white/50"
+                      className="flex items-start gap-2 text-[#e8e6e3]/50"
                     >
-                      <span className="text-white/30 mt-px">→</span>
+                      <span className="text-[#e8e6e3]/30 mt-px">→</span>
                       <span>Scaffolding project structure...</span>
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 2.5 }}
-                      className="flex items-start gap-2 text-emerald-400/70"
+                      className="flex items-start gap-2 text-[#8a9a7b]/70"
                     >
                       <span className="mt-px">✓</span>
                       <span>Implementation complete — opening PR #{prNumber}</span>
@@ -750,7 +750,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 3.5 }}
-                    className="text-white/15 text-[10px] font-mono mt-4 text-center"
+                    className="text-[#e8e6e3]/15 text-[10px] font-mono mt-4 text-center"
                   >
                     PR #{prNumber} submitted — sending to Arborist for review...
                   </motion.p>
@@ -773,52 +773,52 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                   <div className="flex items-center justify-center gap-3 mb-6">
                     <span className="text-3xl">🌲</span>
                     <div className="text-left">
-                      <p className="text-white/80 text-sm font-semibold">Arborist</p>
-                      <p className="text-[#C6A85E]/60 text-[10px] font-mono">
+                      <p className="text-[#e8e6e3]/80 text-sm font-semibold">Arborist</p>
+                      <p className="text-[#c4a862]/60 text-[10px] font-mono">
                         coordinator agent — reviewing PR #{prNumber}
                       </p>
                     </div>
                   </div>
 
                   {/* Review log */}
-                  <div className="rounded-xl bg-black/30 border border-[#C6A85E]/10 p-5 font-mono text-xs space-y-2.5">
-                    <div className="flex items-center gap-2 mb-3 pb-2.5 border-b border-white/5">
-                      <span className="w-2 h-2 bg-[#C6A85E] rounded-full animate-pulse" />
-                      <span className="text-[#C6A85E]/70 text-[10px] uppercase tracking-wider">QA Review + Security Audit</span>
+                  <div className="rounded-xl bg-black/30 border border-[#c4a862]/10 p-5 font-mono text-xs space-y-2.5">
+                    <div className="flex items-center gap-2 mb-3 pb-2.5 border-b border-[#e8e6e3]/5">
+                      <span className="w-2 h-2 bg-[#c4a862] rounded-full animate-pulse" />
+                      <span className="text-[#c4a862]/70 text-[10px] uppercase tracking-wider">QA Review + Security Audit</span>
                     </div>
 
                     <motion.div
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 }}
-                      className="flex items-start gap-2 text-white/50"
+                      className="flex items-start gap-2 text-[#e8e6e3]/50"
                     >
-                      <span className="text-white/30 mt-px">→</span>
+                      <span className="text-[#e8e6e3]/30 mt-px">→</span>
                       <span>Validating PR #{prNumber} against epoch {epochNumber} spec...</span>
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1.0 }}
-                      className="flex items-start gap-2 text-white/50"
+                      className="flex items-start gap-2 text-[#e8e6e3]/50"
                     >
-                      <span className="text-white/30 mt-px">→</span>
+                      <span className="text-[#e8e6e3]/30 mt-px">→</span>
                       <span>Running security audit — checking for OWASP top 10, dependency vulnerabilities...</span>
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1.8 }}
-                      className="flex items-start gap-2 text-white/50"
+                      className="flex items-start gap-2 text-[#e8e6e3]/50"
                     >
-                      <span className="text-white/30 mt-px">→</span>
+                      <span className="text-[#e8e6e3]/30 mt-px">→</span>
                       <span>Verifying constraint compliance ({currentBrief?.constraints.length || 5} constraints)...</span>
                     </motion.div>
                     <motion.div
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 2.6 }}
-                      className="flex items-start gap-2 text-emerald-400/70"
+                      className="flex items-start gap-2 text-[#8a9a7b]/70"
                     >
                       <span className="mt-px">✓</span>
                       <span>QA spec passed — all constraints met</span>
@@ -827,7 +827,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 3.2 }}
-                      className="flex items-start gap-2 text-emerald-400/70"
+                      className="flex items-start gap-2 text-[#8a9a7b]/70"
                     >
                       <span className="mt-px">✓</span>
                       <span>Security audit passed — no vulnerabilities detected</span>
@@ -836,7 +836,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                       initial={{ opacity: 0, x: -8 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 3.8 }}
-                      className="flex items-start gap-2 text-[#C6A85E]"
+                      className="flex items-start gap-2 text-[#c4a862]"
                     >
                       <span className="mt-px">🚀</span>
                       <span>PR #{prNumber} approved — merging to main and deploying to {SAGE_TOKEN.fullName} prod</span>
@@ -863,9 +863,9 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                     transition={{ delay: 0.2 }}
                     className="mb-6"
                   >
-                    <p className="text-emerald-400 text-[10px] font-mono uppercase tracking-widest mb-2">Epoch {epochNumber} Settled</p>
-                    <h2 className="text-white/90 text-xl font-bold mb-1">PR #{prNumber} deployed to prod</h2>
-                    <p className="text-white/30 text-xs font-mono">
+                    <p className="text-[#8a9a7b] text-[10px] font-mono uppercase tracking-widest mb-2">Epoch {epochNumber} Settled</p>
+                    <h2 className="text-[#e8e6e3]/90 text-xl font-bold mb-1">PR #{prNumber} deployed to prod</h2>
+                    <p className="text-[#e8e6e3]/30 text-xs font-mono">
                       {currentBrief?.title || currentPhase.title} is now live on {SAGE_TOKEN.fullName}
                     </p>
                   </motion.div>
@@ -875,22 +875,22 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5 space-y-3"
+                    className="rounded-xl border border-[#7b8a6e]/20 bg-[#7b8a6e]/5 p-5 space-y-3"
                   >
-                    <p className="text-white/25 text-[10px] font-mono uppercase tracking-wider mb-3">Payment Released</p>
+                    <p className="text-[#e8e6e3]/25 text-[10px] font-mono uppercase tracking-wider mb-3">Payment Released</p>
 
                     {/* USDC payment */}
-                    <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-black/20 border border-white/5">
+                    <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-black/20 border border-[#e8e6e3]/5">
                       <div className="flex items-center gap-2">
                         <span className="text-lg">{winner.builderAvatar}</span>
-                        <span className="text-white/60 text-xs font-mono">{winner.builderName}</span>
+                        <span className="text-[#e8e6e3]/60 text-xs font-mono">{winner.builderName}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
                         <motion.span
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 1.0 }}
-                          className="text-emerald-400 text-sm font-mono font-bold"
+                          className="text-[#8a9a7b] text-sm font-mono font-bold"
                         >
                           +{winner.cost.toLocaleString()} USDC
                         </motion.span>
@@ -899,17 +899,17 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
 
                     {/* SAGE reward */}
                     {currentBrief && (
-                      <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-black/20 border border-[#C6A85E]/10">
+                      <div className="flex items-center justify-between px-3 py-2.5 rounded-lg bg-black/20 border border-[#c4a862]/10">
                         <div className="flex items-center gap-2">
                           <span className="text-lg">{winner.builderAvatar}</span>
-                          <span className="text-white/60 text-xs font-mono">{winner.builderName}</span>
+                          <span className="text-[#e8e6e3]/60 text-xs font-mono">{winner.builderName}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
                           <motion.span
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             transition={{ delay: 1.4 }}
-                            className="text-[#C6A85E] text-sm font-mono font-bold"
+                            className="text-[#c4a862] text-sm font-mono font-bold"
                           >
                             +{currentBrief.sageReward.toLocaleString()} {SAGE_TOKEN.name}
                           </motion.span>
@@ -924,7 +924,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 2.2 }}
-                      className="text-white/15 text-[10px] font-mono mt-5"
+                      className="text-[#e8e6e3]/15 text-[10px] font-mono mt-5"
                     >
                       Advancing to epoch {epochNumber + 1}...
                     </motion.p>
@@ -933,7 +933,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 2.2 }}
-                      className="text-emerald-400/40 text-[10px] font-mono mt-5"
+                      className="text-[#8a9a7b]/40 text-[10px] font-mono mt-5"
                     >
                       All initial epochs complete — entering live execution view...
                     </motion.p>

@@ -3,12 +3,12 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { SeedIdea, IdeaPhase, getPlanterById } from '@/lib/seedData'
 
-const PHASE_EMOJI: Record<IdeaPhase, string> = {
-  ideation: '🌱',
-  'spec-gen': '🌿',
-  bidding: '🌳',
-  execution: '🍂',
-  settled: '✅',
+const PHASE_DOT_COLOR: Record<IdeaPhase, string> = {
+  ideation: 'bg-[#e8e6e3]/15',
+  'spec-gen': 'bg-[#c4a862]',
+  bidding: 'bg-[#c4a862]',
+  execution: 'bg-[#c4a862]',
+  settled: 'bg-[#7b8a6e]',
 }
 
 const PHASE_LABEL: Record<IdeaPhase, string> = {
@@ -41,24 +41,24 @@ export default function IdeaCard({ idea, index }: { idea: SeedIdea; index: numbe
     >
       <Link
         href={`/idea/${idea.id}`}
-        className="block bg-white/[0.03] border border-white/8 rounded-2xl p-5 hover:border-[#1F5A45]/40 hover:bg-white/[0.05] transition-all group"
+        className="block bg-[#e8e6e3]/[0.03] border border-[#e8e6e3]/8 rounded-2xl p-5 hover:border-[#7b8a6e]/40 hover:bg-[#e8e6e3]/[0.05] transition-all group"
       >
         {/* Top row: category + phase */}
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[10px] font-mono text-white/30 uppercase tracking-wider">{idea.category}</span>
-          <span className="flex items-center gap-1 text-[10px] font-mono text-white/40">
-            <span>{PHASE_EMOJI[idea.phase]}</span>
+          <span className="text-[10px] font-mono text-[#e8e6e3]/30 uppercase tracking-wider">{idea.category}</span>
+          <span className="flex items-center gap-1 text-[10px] font-mono text-[#e8e6e3]/40">
+            <span className={`w-1.5 h-1.5 rounded-full ${PHASE_DOT_COLOR[idea.phase]}`} />
             <span>{PHASE_LABEL[idea.phase]}</span>
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-white/90 font-semibold text-sm leading-snug mb-2 group-hover:text-[#C6A85E] transition-colors">
+        <h3 className="text-[#e8e6e3]/90 font-semibold text-sm leading-snug mb-2 group-hover:text-[#c4a862] transition-colors">
           {idea.title}
         </h3>
 
         {/* Description (2-line truncate) */}
-        <p className="text-white/40 text-xs leading-relaxed line-clamp-2 mb-4">
+        <p className="text-[#e8e6e3]/40 text-xs leading-relaxed line-clamp-2 mb-4">
           {idea.description}
         </p>
 
@@ -66,33 +66,33 @@ export default function IdeaCard({ idea, index }: { idea: SeedIdea; index: numbe
         <div className="flex items-center gap-2 mb-3">
           {planter && (
             <>
-              <span className="text-sm">{planter.avatar}</span>
-              <span className="text-white/50 text-xs">{planter.name}</span>
+              <span className="w-6 h-6 rounded-full bg-[#7b8a6e]/15 flex items-center justify-center text-[9px] font-mono text-[#7b8a6e] font-bold">{planter.name.split(' ').map(n => n[0]).join('')}</span>
+              <span className="text-[#e8e6e3]/50 text-xs">{planter.name}</span>
             </>
           )}
-          <span className="text-white/20 text-[10px] ml-auto">{timeAgo(idea.plantedAt)}</span>
+          <span className="text-[#e8e6e3]/20 text-[10px] ml-auto">{timeAgo(idea.plantedAt)}</span>
         </div>
 
         {/* Conditional footer */}
-        <div className="pt-3 border-t border-white/5">
+        <div className="pt-3 border-t border-[#e8e6e3]/5">
           {idea.phase === 'settled' && (
             <div className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full" />
-              <span className="text-emerald-400/80 text-[10px] font-mono">Completed</span>
+              <span className="w-1.5 h-1.5 bg-[#8a9a7b] rounded-full" />
+              <span className="text-[#8a9a7b]/80 text-[10px] font-mono">Completed</span>
               {idea.builderName && (
-                <span className="text-white/25 text-[10px] font-mono ml-auto">by {idea.builderName}</span>
+                <span className="text-[#e8e6e3]/25 text-[10px] font-mono ml-auto">by {idea.builderName}</span>
               )}
             </div>
           )}
           {idea.phase === 'execution' && idea.progress !== undefined && (
             <div className="space-y-1.5">
               <div className="flex items-center justify-between">
-                <span className="text-white/30 text-[10px] font-mono">Building</span>
-                <span className="text-[#C6A85E]/70 text-[10px] font-mono">{idea.progress}%</span>
+                <span className="text-[#e8e6e3]/30 text-[10px] font-mono">Building</span>
+                <span className="text-[#c4a862]/70 text-[10px] font-mono">{idea.progress}%</span>
               </div>
-              <div className="h-1 bg-white/8 rounded-full overflow-hidden">
+              <div className="h-1 bg-[#e8e6e3]/8 rounded-full overflow-hidden">
                 <div
-                  className="h-full bg-gradient-to-r from-[#1F5A45] to-emerald-500 rounded-full transition-all"
+                  className="h-full bg-gradient-to-r from-[#7b8a6e] to-[#8a9a7b] rounded-full transition-all"
                   style={{ width: `${idea.progress}%` }}
                 />
               </div>
@@ -100,20 +100,20 @@ export default function IdeaCard({ idea, index }: { idea: SeedIdea; index: numbe
           )}
           {idea.phase === 'bidding' && (
             <div className="flex items-center gap-1.5">
-              <span className="text-[#C6A85E]/60 text-[10px] font-mono">{bidCount} bids</span>
-              <span className="text-white/15 text-[10px]">·</span>
-              <span className="text-white/25 text-[10px] font-mono">auction open</span>
+              <span className="text-[#c4a862]/60 text-[10px] font-mono">{bidCount} bids</span>
+              <span className="text-[#e8e6e3]/15 text-[10px]">·</span>
+              <span className="text-[#e8e6e3]/25 text-[10px] font-mono">auction open</span>
             </div>
           )}
           {idea.phase === 'spec-gen' && (
             <div className="flex items-center gap-1.5">
-              <span className="w-1 h-1 bg-[#C6A85E] rounded-full animate-pulse" />
-              <span className="text-white/30 text-[10px] font-mono">Spec generating...</span>
+              <span className="w-1 h-1 bg-[#c4a862] rounded-full animate-pulse" />
+              <span className="text-[#e8e6e3]/30 text-[10px] font-mono">Spec generating...</span>
             </div>
           )}
           {idea.phase === 'ideation' && (
             <div className="flex items-center gap-1.5">
-              <span className="text-white/25 text-[10px] font-mono">{idea.conversation.length} messages</span>
+              <span className="text-[#e8e6e3]/25 text-[10px] font-mono">{idea.conversation.length} messages</span>
             </div>
           )}
         </div>

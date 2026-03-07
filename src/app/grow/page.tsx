@@ -21,12 +21,12 @@ function GrowPageInner() {
   }
 
   return (
-    <div className="h-screen flex flex-col bg-[#060f0b] text-white overflow-hidden">
+    <div className="h-screen flex flex-col bg-[#111110] text-[#e8e6e3] overflow-hidden">
       <TopNav />
 
       <div className="flex-1 overflow-hidden flex flex-col">
-        <div className="px-6 py-2 border-b border-white/5">
-          <p className="text-xs text-white/30 uppercase tracking-widest">{PHASE_LABELS[phase]}</p>
+        <div className="px-6 py-2 border-b border-[#e8e6e3]/[0.04]">
+          <p className="text-xs text-[#e8e6e3]/30 uppercase tracking-widest">{PHASE_LABELS[phase]}</p>
         </div>
 
         <div className="flex-1 overflow-hidden">

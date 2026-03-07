@@ -147,16 +147,16 @@ export default function ChatInterface({ isDemo }: Props) {
           <motion.div
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mx-4 mt-4 px-4 py-3 rounded-xl bg-[#1F5A45]/20 border border-[#C6A85E]/20 flex items-center gap-3"
+            className="mx-4 mt-4 px-4 py-3 rounded-xl bg-[#7b8a6e]/20 border border-[#c4a862]/20 flex items-center gap-3"
           >
             <span className="text-2xl">{DEMO_ATTRIBUTION.avatar}</span>
             <div className="flex-1 min-w-0">
-              <p className="text-white/80 text-xs font-semibold">{DEMO_ATTRIBUTION.name}
-                <span className="text-white/40 font-normal ml-1">· {DEMO_ATTRIBUTION.title}</span>
+              <p className="text-[#e8e6e3]/80 text-xs font-semibold">{DEMO_ATTRIBUTION.name}
+                <span className="text-[#e8e6e3]/40 font-normal ml-1">· {DEMO_ATTRIBUTION.title}</span>
               </p>
-              <p className="text-[#C6A85E]/80 text-xs italic">{DEMO_ATTRIBUTION.note}</p>
+              <p className="text-[#c4a862]/80 text-xs italic">{DEMO_ATTRIBUTION.note}</p>
             </div>
-            <span className="text-white/20 text-xs flex-shrink-0">live demo</span>
+            <span className="text-[#e8e6e3]/20 text-xs flex-shrink-0">live demo</span>
           </motion.div>
         )}
       </AnimatePresence>
@@ -169,9 +169,8 @@ export default function ChatInterface({ isDemo }: Props) {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mt-12"
           >
-            <p className="text-3xl mb-3">🌱</p>
-            <p className="text-[#C6A85E] text-lg font-medium">What would you like to grow?</p>
-            <p className="text-white/40 text-sm mt-2">Share an idea — any idea. We'll shape it together.</p>
+            <p className="text-[#c4a862] text-lg font-medium">What would you like to grow?</p>
+            <p className="text-[#e8e6e3]/40 text-sm mt-2">Share an idea — any idea. We'll shape it together.</p>
           </motion.div>
         )}
 
@@ -181,7 +180,7 @@ export default function ChatInterface({ isDemo }: Props) {
             animate={{ opacity: 1 }}
             className="text-center mt-16"
           >
-            <p className="text-white/20 text-sm">Loading demo...</p>
+            <p className="text-[#e8e6e3]/20 text-sm">Loading demo...</p>
           </motion.div>
         )}
 
@@ -194,23 +193,23 @@ export default function ChatInterface({ isDemo }: Props) {
               className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {msg.role === 'assistant' && (
-                <div className="w-7 h-7 rounded-full bg-[#1F5A45] flex items-center justify-center text-sm mr-2 mt-1 flex-shrink-0">
-                  🌿
+                <div className="w-7 h-7 rounded-full bg-[#7b8a6e]/15 flex items-center justify-center flex-shrink-0 mr-2 mt-1">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" fill="#7b8a6e" opacity="0.7" /><circle cx="12" cy="12" r="8" stroke="#7b8a6e" strokeWidth="1" opacity="0.25" /></svg>
                 </div>
               )}
               <div className={`flex flex-col ${typingId === msg.id ? 'w-[80%]' : 'max-w-[80%]'}`}>
                 <div
                   className={`rounded-2xl px-4 py-3 text-sm leading-relaxed transition-none ${
                     msg.role === 'user'
-                      ? 'bg-[#C6A85E] text-[#0E2F24] font-medium rounded-br-sm'
-                      : 'bg-white/8 text-white/90 rounded-bl-sm border border-white/10'
+                      ? 'bg-[#c4a862] text-[#111110] font-medium rounded-br-sm'
+                      : 'bg-[#e8e6e3]/8 text-[#e8e6e3]/90 rounded-bl-sm border border-[#e8e6e3]/10'
                   }`}
                 >
                   {msg.content || (
                     <span className="flex gap-1 py-1">
-                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
-                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
-                      <span className="w-1.5 h-1.5 bg-white/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#e8e6e3]/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#e8e6e3]/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
+                      <span className="w-1.5 h-1.5 bg-[#e8e6e3]/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                     </span>
                   )}
                   {typingId === msg.id && (
@@ -249,7 +248,7 @@ export default function ChatInterface({ isDemo }: Props) {
           >
             <button
               onClick={handleGrowIt}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-[#1F5A45] to-[#0E2F24] border border-[#C6A85E]/40 text-[#C6A85E] font-semibold text-sm hover:border-[#C6A85E] hover:shadow-lg hover:shadow-[#C6A85E]/10 transition-all duration-200 flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-xl bg-[#7b8a6e]/10 border border-[#c4a862]/40 text-[#c4a862] font-semibold text-sm hover:border-[#c4a862] hover:shadow-lg hover:shadow-[#c4a862]/10 transition-all duration-200 flex items-center justify-center gap-2"
             >
               🌱 Grow It
             </button>
@@ -260,18 +259,18 @@ export default function ChatInterface({ isDemo }: Props) {
       {/* Input (non-demo only) */}
       {!isDemo && (
         <div className="px-4 pb-4 pt-2">
-          <div className="flex gap-2 bg-white/6 border border-white/10 rounded-2xl px-4 py-3 focus-within:border-[#1F5A45] transition-colors">
+          <div className="flex gap-2 bg-[#e8e6e3]/6 border border-[#e8e6e3]/10 rounded-2xl px-4 py-3 focus-within:border-[#7b8a6e] transition-colors">
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && send()}
               placeholder="Describe your idea..."
-              className="flex-1 bg-transparent text-white placeholder-white/30 text-sm outline-none"
+              className="flex-1 bg-transparent text-[#e8e6e3] placeholder-[#e8e6e3]/30 text-sm outline-none"
             />
             <button
               onClick={() => send()}
               disabled={!input.trim() || isLoading}
-              className="text-[#C6A85E] disabled:opacity-30 hover:opacity-80 transition-opacity text-lg"
+              className="text-[#c4a862] disabled:opacity-30 hover:opacity-80 transition-opacity text-lg"
             >
               ↑
             </button>
@@ -287,7 +286,7 @@ export default function ChatInterface({ isDemo }: Props) {
                 <button
                   key={s}
                   onClick={() => send(s)}
-                  className="text-xs px-3 py-1.5 rounded-full border border-white/10 text-white/50 hover:text-white/80 hover:border-white/20 transition-all"
+                  className="text-xs px-3 py-1.5 rounded-full border border-[#e8e6e3]/10 text-[#e8e6e3]/50 hover:text-[#e8e6e3]/80 hover:border-[#e8e6e3]/20 transition-all"
                 >
                   {s}
                 </button>
