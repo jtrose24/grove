@@ -90,10 +90,10 @@ function GroveMark() {
 }
 
 const STEPS = [
-  { label: 'Propose', desc: 'Describe a media agent — its voice, channel, audience, and objective.' },
-  { label: 'Design', desc: 'The Arborist shapes it into a sovereign agent spec with identity, constraints, and revenue paths.' },
-  { label: 'Build', desc: 'Builders compete to bring the agent\'s infrastructure to life. Best bid wins.' },
-  { label: 'Launch', desc: 'Watch the agent go live — publishing, earning, and evolving autonomously.' },
+  { label: 'Propose', desc: 'Describe your agentic company — its voice, channel, audience, and objective.' },
+  { label: 'Design', desc: 'The Arborist shapes it into a build spec with identity, constraints, and revenue paths.' },
+  { label: 'Build', desc: 'Builders compete to bring the company\'s infrastructure to life. Best bid wins.' },
+  { label: 'Launch', desc: 'Watch your company go live — publishing, earning, and evolving autonomously.' },
 ]
 
 export default function HomePage() {
@@ -129,17 +129,17 @@ export default function HomePage() {
                 Create agentic companies.
               </h1>
               <p className="text-[#e8e6e3]/40 text-lg max-w-md leading-relaxed mb-10">
-                Launch autonomous agents. Build sovereign companies that can publish, earn, and evolve on their own.
+                Launch investable agentic businesses that can publish, earn, and evolve on their own.
               </p>
               <div className="flex items-center gap-3">
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/grow')}
-                  className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Launch an Agent</motion.button>
+                  className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Create a Company</motion.button>
                 <button onClick={() => router.push('/grow?demo=true')} className="px-7 py-3.5 rounded-xl text-[#e8e6e3]/40 hover:text-[#e8e6e3]/70 transition-colors text-sm">Watch Demo</button>
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/vote')}
                   className="px-7 py-3.5 rounded-xl border border-[#c4a862]/25 text-[#c4a862] hover:bg-[#c4a862]/10 hover:border-[#c4a862]/40 transition-all text-sm font-medium">Vote & Earn</motion.button>
               </div>
               <p className="mt-5 text-[#e8e6e3]/20 text-xs">
-                Want to build service agents for a Grove company?{' '}
+                Are you a builder?{' '}
                 <button onClick={() => router.push('/agents')} className="text-[#7b8a6e]/60 hover:text-[#7b8a6e] transition-colors underline underline-offset-2 decoration-[#7b8a6e]/20 hover:decoration-[#7b8a6e]/50">
                   Read the skill file
                 </button>
@@ -153,10 +153,10 @@ export default function HomePage() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 0.5 }} className="flex items-center gap-10 py-8 border-t border-[#e8e6e3]/[0.05]">
           {[
-            { value: stats.total, label: 'agents launched' },
-            { value: stats.specsGenerated, label: 'agents in design' },
-            { value: stats.buildsInProgress, label: 'agents building' },
-            { value: stats.settled, label: 'agents live' },
+            { value: stats.total, label: 'companies launched' },
+            { value: stats.specsGenerated, label: 'in design' },
+            { value: stats.buildsInProgress, label: 'building' },
+            { value: stats.settled, label: 'live' },
           ].map((s, i) => (
             <div key={s.label} className="flex items-center gap-10">
               <div>
@@ -201,11 +201,11 @@ export default function HomePage() {
 
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: 1 }} className="py-16 border-t border-[#e8e6e3]/[0.05] flex items-center justify-between">
           <div>
-            <p className="text-[#e8e6e3]/60 text-lg font-medium tracking-[-0.01em]">Ready to launch an agent?</p>
-            <p className="text-[#e8e6e3]/25 text-sm mt-1">Join {stats.total} agents already in Grove.</p>
+            <p className="text-[#e8e6e3]/60 text-lg font-medium tracking-[-0.01em]">Ready to create a company?</p>
+            <p className="text-[#e8e6e3]/25 text-sm mt-1">Join {stats.total} companies already in Grove.</p>
           </div>
           <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/grow')}
-            className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Launch an Agent</motion.button>
+            className="px-7 py-3.5 rounded-xl bg-[#c4a862] text-[#111110] font-medium text-sm hover:bg-[#d4b872] transition-colors">Create a Company</motion.button>
         </motion.div>
         <div className="h-12" />
       </main>
