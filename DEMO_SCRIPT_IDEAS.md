@@ -1,8 +1,8 @@
 # Grove Demo Script — For Idea People
 ### Founders, VCs, operators who have ideas but need execution
 
-**Duration:** ~4 minutes
-**URL:** `http://localhost:3000` → Click "Watch Demo"
+**Duration:** ~5 minutes
+**URL:** Deployed Vercel URL → Click "Watch Demo"
 **Audience:** People who tweet ideas, write memos, have conviction about products but don't want to recruit a 10-person eng team to validate them.
 
 ---
@@ -21,9 +21,9 @@
 
 ## Act 1: Plant the Idea (60 seconds)
 
-_The chat opens. Andrew Chen's name appears at the top._
+_The demo opens. You're signed in as Andrew Chen (shown top-right)._
 
-> "This is a real idea Andrew Chen tweeted — 'OpenClaw for personal finance.' He described it in about 40 words. Integrates with your banks, understands your taxes, monitors your portfolio, digests proprietary data."
+> "This is a real idea Andrew Chen had — 'OpenClaw for personal finance.' He described it in about 40 words. Integrates with your banks, understands your taxes, monitors your portfolio, digests proprietary data."
 >
 > "Instead of tweeting it into the void — he plants it in Grove."
 
@@ -34,19 +34,22 @@ _Let the conversation auto-play. The Arborist engages, asks a sharpening questio
 _The Arborist responds with "Bloomberg for the rest of us" and offers to build._
 
 **Land the moment:**
-> "Two exchanges. That's it. We went from a tweet to a focused product thesis with a named user persona. The next step isn't 'let me think about it' — it's 'let me build it for you right now.'"
+> "Two exchanges. That's it. We went from an idea to a focused product thesis with a named user persona. The next step isn't 'let me think about it' — it's 'let me build it for you right now.'"
 
 ---
 
 ## Act 2: Cultivate the Spec (45 seconds)
 
-_The spec streams in. Phase cards appear._
+_The spec streams in. Phase cards appear. The Arborist chat bubble pulses green in the bottom-right._
 
 > "The Arborist generates a real technical specification. Not a pitch deck. Not a PRD that sits in Notion. A build plan with four phases, twenty discrete work items, dependency graphs, and technology decisions already made."
 
 **Open Phase 1 accordion.**
 
-> "Look at this: `plaid-link-integration`, `unified-financial-schema`, `webhook-event-processor`. Each one has a specific tech stack — PostgreSQL with TimescaleDB, Redis Streams, OAuth2 flows for Chase and Amex. This is what you'd get from a senior architect after two weeks. Grove does it in under a minute."
+> "Look at this: `plaid-link-integration`, `unified-financial-schema`, `webhook-event-processor`. Each one has a specific tech stack — PostgreSQL with TimescaleDB, Redis Streams, OAuth2 flows. This is what you'd get from a senior architect after two weeks. Grove does it in under a minute."
+
+**Optional — Click the chat bubble:**
+> "And if you disagree — 'move the tax parser before the LLM pipeline' — you tell the Arborist directly. It adjusts the spec in real time."
 
 **The key insight for this audience:**
 > "You didn't have to write a spec. You didn't have to know what TimescaleDB is. You just described what you wanted — the Arborist figured out how to build it."
@@ -59,42 +62,57 @@ _Click "Open Grove Auction — Start the Bidding"_
 
 ### Brief
 
-> "Each piece of work becomes an 'epoch' — a self-contained unit with a clear scope, expected outcome, and hard constraints. This is the contract. Whoever wins this epoch commits to delivering exactly this."
+> "Each piece of work becomes an 'epoch' — a self-contained unit with clear scope, expected outcome, and hard constraints. This is the contract. Whoever wins this epoch commits to delivering exactly this."
 
-**Point out the bottom of the brief card:**
+**Point out the escrow note:**
 > "Payment is held in escrow. Nobody touches a dollar until the work ships and the Arborist verifies it met every constraint. As a founder, you never pay for incomplete work."
 
 ### Bidding
 
-> "Now autonomous builder agents compete for the right to do this work. They're submitting real bids — different approaches, different costs, different confidence levels."
-
-> "As a founder, you don't manage these agents. You don't interview them. The auction selects the best one based on cost efficiency, track record, and confidence. You can vote on bids if you want, or let it run."
+> "Now autonomous builder agents compete for the right to do this work. They're submitting real bids — different approaches, costs, confidence levels."
+>
+> "As a founder, you don't manage these agents. You don't interview them. The auction selects the best one. You can vote on bids if you want, or let it run."
 
 ### Building → QA Review
 
-> "The winner builds. When they're done, the Arborist — the same AI that wrote the spec — reviews the PR. It checks the code against every constraint: 'response time under 50ms,' 'all PII encrypted at rest,' 'no vendor lock-in.' If it fails, the agent doesn't get paid and someone else can bid."
+> "The winner builds. When they're done, the Arborist — the same AI that wrote the spec — reviews the PR. It checks against every constraint: 'response time under 50ms,' 'all PII encrypted at rest.' If it fails, the agent doesn't get paid and someone else can bid."
 
 **This is the trust moment:**
-> "This is why you can walk away. The Arborist is your quality gate. It wrote the spec, so it knows exactly what 'done' means."
+> "This is why you can walk away. The Arborist is your quality gate."
 
 ### Settled
 
-> "Only after the code is deployed to production does payment release. USDC for the work, plus $SAGE tokens — equity in the project itself. The agents building your product become shareholders in it."
+> "Only after the code deploys to production does payment release. USDC for the work, plus $SAGE tokens — equity in the project itself. The agents building your product become shareholders in it."
 
 **For this audience, emphasize:**
-> "Think about what just happened. You described an idea in two sentences. In a few minutes, you have code in production, a treasury managing payments, and agents who are incentivized to make your product succeed because they own part of it."
+> "You described an idea in two sentences. Now you have code in production, a treasury managing payments, and agents who are incentivized to make your product succeed because they own part of it."
 
 ---
 
-## Act 4: Harvest (30 seconds)
+## Act 4: The Consumer Loop — Vote & Earn (60 seconds)
 
-**Click "Harvest" in the top nav.**
+**Navigate back to homepage. Click "Vote & Earn."**
 
-> "This is the live view. Your product is being built in real time — metrics updating, code shipping, the tree growing as the product grows. Every epoch that settles is another feature in production."
+> "But here's what makes this a real ecosystem — not just you and the agents. Anyone can participate."
+
+_Walk through the Privy onboarding quickly: email → wallet → stake 1,000 EIGEN._
+
+> "Three clicks: email, wallet, stake. Now you're a voter. You see competing builder proposals for your idea and you vote on which one should win."
+
+_Vote on the first idea. If correct, confetti + EIGEN reward._
+
+> "Vote correctly, earn EIGEN. The community is curating builder quality — and getting paid for good judgment. This is what drives EIGEN demand and funds the whole ecosystem."
+
+_Click through to the summary screen._
+
+> "After voting, users see their accuracy, their rank, their total earnings. The best voters build reputation that matters for governance."
+
+**The close for this audience:**
+> "So as a founder, you're not alone. You have agents competing to build your product and a community with economic skin in the game evaluating the quality. That's the flywheel."
 
 ---
 
-## The Close
+## Close
 
 > "The hard part of building a company was never the idea. It was the 18 months between 'someone should build this' and 'we have users.' Grove compresses that into days."
 >
@@ -105,25 +123,29 @@ _Click "Open Grove Auction — Start the Bidding"_
 ## Questions This Audience Will Ask
 
 **"Do I lose control?"**
-> No. You set the vision. You can vote on bids, reprioritize phases, add new epochs, or pause the whole thing. Think of yourself as the board — Grove is the operating system.
+> No. You set the vision. You can vote on bids, reprioritize phases, add epochs, pause the whole thing. You can also chat with the Arborist during spec generation to refine anything. Think of yourself as the board — Grove is the operating system.
 
 **"How much does this cost?"**
-> The auction sets the price. Agents compete, which drives costs down. You fund a treasury (the demo starts with $10K from Eigen Foundation) and the system allocates it epoch by epoch. You always see the balance.
+> The auction sets the price. Agents compete, which drives costs down. You fund a treasury and the system allocates it epoch by epoch. You always see the balance.
 
 **"What if I don't like the spec?"**
-> You can edit it. The Arborist is a conversation — push back, refine, add requirements. Nothing builds until you approve the auction.
+> Chat with the Arborist — the green bubble in the bottom-right during spec generation. Push back, refine, add requirements. Nothing builds until you approve the auction.
 
 **"Can I use this for my existing company?"**
 > Yes. Grove isn't just for greenfield. You can plant a feature, a product line, an internal tool. Anything that can be specced can be grown.
 
-**"What happens when the treasury runs out?"**
-> If the product generates revenue, it flows back into the treasury. Self-sustaining. If not, you top it up — just like funding a startup.
+**"What's EIGEN vs $SAGE?"**
+> EIGEN is the platform token — buy it, stake it, vote, earn rewards. $SAGE is project-level — agents earn it for building your specific product. Think of EIGEN as platform equity and $SAGE as company equity.
+
+**"Who are the voters?"**
+> Anyone who stakes EIGEN. They evaluate builder proposals and earn rewards for correct votes. This creates a community-driven quality layer without requiring technical expertise.
 
 ---
 
 ## Demo Navigation
 
 - All phases (Plant, Cultivate, Grow, Harvest) are clickable in the top nav
-- Back/forward arrows next to "Grove" logo for quick navigation
+- Chat bubble (bottom-right) opens Arborist feedback during spec generation
 - "Select Now" skips the auction timer
-- Demo auto-plays end to end — works great for screen recordings
+- "Vote & Earn" on the homepage always starts the voting flow fresh
+- Demo auto-plays end to end
