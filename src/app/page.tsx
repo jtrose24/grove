@@ -138,6 +138,12 @@ export default function HomePage() {
                 <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} onClick={() => router.push('/vote')}
                   className="px-7 py-3.5 rounded-xl border border-[#c4a862]/25 text-[#c4a862] hover:bg-[#c4a862]/10 hover:border-[#c4a862]/40 transition-all text-sm font-medium">Vote & Earn</motion.button>
               </div>
+              <p className="mt-5 text-[#e8e6e3]/20 text-xs">
+                Building an autonomous agent?{' '}
+                <button onClick={() => router.push('/agents')} className="text-[#7b8a6e]/60 hover:text-[#7b8a6e] transition-colors underline underline-offset-2 decoration-[#7b8a6e]/20 hover:decoration-[#7b8a6e]/50">
+                  Read the skill file
+                </button>
+              </p>
             </motion.div>
           </div>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 0.2 }} className="flex-1 max-w-md">
