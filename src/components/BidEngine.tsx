@@ -28,7 +28,7 @@ const AGENT_STATUSES = [
   'checking availability...',
 ]
 
-const DEMO_BID_TIME = 15
+const DEMO_BID_TIME = 20
 
 /* ── Stage indicator ── */
 function StageIndicator({ currentStage }: { currentStage: EpochStage }) {

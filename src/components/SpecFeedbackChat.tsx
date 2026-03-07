@@ -8,10 +8,20 @@ interface ChatMessage {
   content: string
 }
 
+const DEMO_SCRIPT = [
+  {
+    role: 'user' as const,
+    content: "Move the tax document parser before the LLM pipeline. And cap the alt-data connector budget at 2 epochs.",
+  },
+  {
+    role: 'arborist' as const,
+    content: "Good thinking. I'll restructure Phase 2 to prioritize the tax document parser before the LLM pipeline — that way we have structured financial data ready before we start generating insights. I'll also cap the alt-data connector at 2 epochs and move the social sentiment listener to a stretch goal if we hit timeline pressure.",
+  },
+]
+
 const DEMO_RESPONSES = [
-  "Good thinking. I'll restructure Phase 2 to prioritize the tax document parser before the LLM pipeline — that way we have structured financial data ready before we start generating insights.",
   "Makes sense. I've bumped the webhook processor to Phase 1 and added a Redis Streams dependency. The reconciliation engine now waits for both Plaid and the webhook layer to be complete.",
-  "Noted. I'll add a constraint on Phase 3 to cap the alt-data connector budget at 2 epochs and move the social sentiment listener to a stretch goal if we hit timeline pressure.",
+  "Noted. I'll tighten the scope on Phase 3 — the portfolio analytics module will use pre-aggregated materialized views instead of real-time computation. Should cut the epoch count from 4 to 3.",
   "I've updated the spec to reflect that. The notification router in Phase 4 now depends on the alert engine, and I've added a user preference layer so notifications aren't overwhelming.",
 ]
 
@@ -20,17 +30,60 @@ export default function SpecFeedbackChat({ isDemo }: { isDemo?: boolean }) {
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
+  const [demoPlayed, setDemoPlayed] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
   const responseIndex = useRef(0)
+  const demoTimers = useRef<ReturnType<typeof setTimeout>[]>([])
+
+  // Auto-play demo conversation when chat opens for the first time
+  useEffect(() => {
+    if (!open || !isDemo || demoPlayed) return
+
+    setDemoPlayed(true)
+    const timers = demoTimers.current
+
+    // Type out Andrew's message character by character
+    const userText = DEMO_SCRIPT[0].content
+    let charIndex = 0
+
+    const startDelay = setTimeout(() => {
+      const typeInterval = setInterval(() => {
+        charIndex++
+        setInput(userText.slice(0, charIndex))
+        if (charIndex >= userText.length) {
+          clearInterval(typeInterval)
+
+          // "Send" the message after a brief pause
+          const sendDelay = setTimeout(() => {
+            setInput('')
+            setMessages([{ id: 'demo-u-1', role: 'user', content: userText }])
+            setTyping(true)
+
+            // Arborist responds
+            const respondDelay = setTimeout(() => {
+              setMessages(m => [...m, { id: 'demo-a-1', role: 'arborist', content: DEMO_SCRIPT[1].content }])
+              setTyping(false)
+            }, 1800)
+            timers.push(respondDelay)
+          }, 400)
+          timers.push(sendDelay)
+        }
+      }, 30)
+      timers.push(typeInterval as unknown as ReturnType<typeof setTimeout>)
+    }, 600)
+    timers.push(startDelay)
+
+    return () => { timers.forEach(t => clearTimeout(t)) }
+  }, [open, isDemo, demoPlayed])
 
   useEffect(() => {
-    if (open && inputRef.current) inputRef.current.focus()
-  }, [open])
+    if (open && inputRef.current && (!isDemo || demoPlayed)) inputRef.current.focus()
+  }, [open, isDemo, demoPlayed])
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: 'smooth' })
-  }, [messages, typing])
+  }, [messages, typing, input])
 
   function handleSend() {
     if (!input.trim()) return
