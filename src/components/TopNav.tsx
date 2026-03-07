@@ -1,5 +1,7 @@
 'use client'
+import Link from 'next/link'
 import { useGroveStore, AppPhase } from '@/lib/store'
+import AuthButton from './AuthButton'
 
 const STEPS: { phase: AppPhase; label: string; emoji: string }[] = [
   { phase: 'ideation', label: 'Plant', emoji: '🌱' },
@@ -23,10 +25,10 @@ export default function TopNav() {
   return (
     <nav className="flex items-center justify-between px-6 py-3 border-b border-white/8 bg-[#0E2F24]/80 backdrop-blur-sm">
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
           <span className="text-xl">🌲</span>
           <span className="text-white font-bold text-lg tracking-tight">Grove</span>
-        </div>
+        </Link>
 
         {/* Back / Forward — larger, more visible */}
         <div className="flex items-center gap-1 ml-3">
@@ -90,6 +92,7 @@ export default function TopNav() {
           <span className="w-1.5 h-1.5 bg-[#C6A85E] rounded-full animate-pulse" />
           <span>Live</span>
         </div>
+        <AuthButton />
       </div>
     </nav>
   )

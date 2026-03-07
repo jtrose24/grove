@@ -15,8 +15,21 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://grove.app"),
   title: "Grove — Plant an idea. Grow a company.",
   description: "Grove turns raw ideas into living companies, coordinated by intelligent agents and grown by a global network of builders.",
+  openGraph: {
+    title: "Grove — Plant an idea. Grow a company.",
+    description: "Grove turns raw ideas into living companies, coordinated by intelligent agents and grown by a global network of builders.",
+    images: ["/og-grove.png"],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Grove — Plant an idea. Grow a company.",
+    description: "Grove turns raw ideas into living companies, coordinated by intelligent agents and grown by a global network of builders.",
+    images: ["/og-grove.png"],
+  },
 };
 
 export default function RootLayout({

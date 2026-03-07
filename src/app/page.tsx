@@ -1,6 +1,8 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { getAggregateStats } from '@/lib/seedData'
+import AuthButton from '@/components/AuthButton'
 
 function Particle({ x, y, delay }: { x: number; y: number; delay: number }) {
   return (
@@ -37,6 +39,7 @@ const HOW_IT_WORKS = [
 
 export default function HomePage() {
   const router = useRouter()
+  const stats = getAggregateStats()
 
   return (
     <div className="min-h-screen bg-[#060f0b] text-white overflow-hidden relative">
@@ -57,12 +60,21 @@ export default function HomePage() {
           <span className="text-2xl">🌲</span>
           <span className="text-white font-bold text-xl tracking-tight">Grove</span>
         </div>
-        <button
-          onClick={() => router.push('/grow')}
-          className="text-sm px-4 py-2 rounded-full border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-all"
-        >
-          Launch App
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={() => router.push('/explore')}
+            className="text-sm px-4 py-2 rounded-full text-white/40 hover:text-white/70 transition-all"
+          >
+            Explore
+          </button>
+          <button
+            onClick={() => router.push('/grow')}
+            className="text-sm px-4 py-2 rounded-full border border-white/15 text-white/60 hover:text-white hover:border-white/30 transition-all"
+          >
+            Launch App
+          </button>
+          <AuthButton />
+        </div>
       </nav>
 
       {/* Hero */}
@@ -103,6 +115,12 @@ export default function HomePage() {
             >
               Watch Demo
             </button>
+            <button
+              onClick={() => router.push('/explore')}
+              className="px-8 py-4 rounded-2xl border border-emerald-500/20 text-emerald-400/70 hover:text-emerald-400 hover:border-emerald-500/40 transition-all text-lg"
+            >
+              Explore the Grove
+            </button>
           </div>
         </motion.div>
 
@@ -138,6 +156,29 @@ export default function HomePage() {
                 <p className="text-white/40 text-xs leading-relaxed">{item.desc}</p>
               </motion.div>
             ))}
+          </div>
+        </motion.div>
+
+        {/* Stats counter */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="mt-16 flex items-center gap-6 text-center"
+        >
+          <div>
+            <p className="text-2xl font-bold text-[#C6A85E]">{stats.total}</p>
+            <p className="text-[10px] text-white/30 uppercase tracking-wider">Ideas planted</p>
+          </div>
+          <div className="w-px h-8 bg-white/10" />
+          <div>
+            <p className="text-2xl font-bold text-emerald-400">{stats.specsGenerated}</p>
+            <p className="text-[10px] text-white/30 uppercase tracking-wider">Specs generated</p>
+          </div>
+          <div className="w-px h-8 bg-white/10" />
+          <div>
+            <p className="text-2xl font-bold text-white/80">{stats.buildsInProgress}</p>
+            <p className="text-[10px] text-white/30 uppercase tracking-wider">Builds in progress</p>
           </div>
         </motion.div>
       </main>
