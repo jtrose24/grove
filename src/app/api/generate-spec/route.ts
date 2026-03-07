@@ -4,8 +4,8 @@ import { rateLimit, rateLimitResponse } from '@/lib/rateLimit'
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY })
 
-const SYSTEM_PROMPT = `You are an expert sovereign media agent architect.
-Generate a concise, actionable agent spec for the given concept.
+const SYSTEM_PROMPT = `You are an expert agentic company architect on Grove.
+Generate a concise, actionable build spec for the given company concept.
 Structure it with exactly 4 phases. Each phase MUST have 3-5 work items.
 
 Use this EXACT format (the work item lines starting with "- [" are critical):
@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
       model: 'claude-sonnet-4-6',
       max_tokens: 1200,
       system: SYSTEM_PROMPT,
-      messages: [{ role: 'user', content: `Generate a sovereign media agent spec for this concept:\n\n${userContent}` }],
+      messages: [{ role: 'user', content: `Generate an agentic company build spec for this concept:\n\n${userContent}` }],
     })
   } catch (err) {
     const status = err instanceof Anthropic.APIError ? err.status : 500

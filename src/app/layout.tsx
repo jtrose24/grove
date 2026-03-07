@@ -16,18 +16,18 @@ const spaceMono = Space_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://grove.app"),
-  title: "Grove — Launch sovereign media agents.",
-  description: "Grove helps people imagine, shape, and launch sovereign media agents that can become autonomous, investable businesses.",
+  title: "Grove — Create agentic companies.",
+  description: "Grove helps people imagine, shape, and launch agentic companies — autonomous agents that can publish, earn, and evolve on their own.",
   openGraph: {
-    title: "Grove — Launch sovereign media agents.",
-    description: "Grove helps people imagine, shape, and launch sovereign media agents that can become autonomous, investable businesses.",
+    title: "Grove — Create agentic companies.",
+    description: "Grove helps people imagine, shape, and launch agentic companies — autonomous agents that can publish, earn, and evolve on their own.",
     images: ["/og-grove.png"],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Grove — Launch sovereign media agents.",
-    description: "Grove helps people imagine, shape, and launch sovereign media agents that can become autonomous, investable businesses.",
+    title: "Grove — Create agentic companies.",
+    description: "Grove helps people imagine, shape, and launch agentic companies — autonomous agents that can publish, earn, and evolve on their own.",
     images: ["/og-grove.png"],
   },
 };

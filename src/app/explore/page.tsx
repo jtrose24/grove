@@ -45,7 +45,7 @@ export default function ExplorePage() {
           >
             <div>
               <p className="text-2xl font-bold text-[#c4a862]">{stats.total}</p>
-              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Agents launched</p>
+              <p className="text-[10px] text-[#e8e6e3]/30 uppercase tracking-wider">Companies</p>
             </div>
             <div className="w-px h-8 bg-[#e8e6e3]/8" />
             <div>
@@ -100,7 +100,7 @@ export default function ExplorePage() {
 
         {ideas.length === 0 && (
           <div className="text-center py-20">
-            <p className="text-[#e8e6e3]/20 text-sm">No agents in this phase yet.</p>
+            <p className="text-[#e8e6e3]/20 text-sm">No companies in this phase yet.</p>
           </div>
         )}
       </div>
