@@ -23,7 +23,7 @@ const METRIC_CONFIG = [
   { key: 'conversion' as const, label: 'Conversion', format: (v: number) => `${v}%`, suffix: '', color: 'from-purple-500 to-purple-400' },
   { key: 'engagement' as const, label: 'Engagement', format: (v: number) => `${v}%`, suffix: '', color: 'from-[#7b8a6e] to-[#8a9a7b]' },
   { key: 'traffic' as const, label: 'Traffic', format: (v: number) => v.toLocaleString(), suffix: '/day', color: 'from-sky-500 to-sky-400' },
-  { key: 'completion' as const, label: 'Build Progress', format: (v: number) => `${v}%`, suffix: '', color: 'from-[#7b8a6e] to-[#8a9a7b]' },
+  { key: 'completion' as const, label: 'Roadmap Progress', format: (v: number) => `${v}%`, suffix: '', color: 'from-[#7b8a6e] to-[#8a9a7b]' },
 ]
 
 export default function ExecutionView() {
@@ -66,8 +66,8 @@ export default function ExecutionView() {
       <div className="flex-1 flex flex-col min-w-0">
         <div className="flex items-center gap-2 mb-3">
           <span className="w-2 h-2 bg-[#8a9a7b] rounded-full animate-pulse" />
-          <span className="text-[#c4a862] text-sm font-semibold uppercase tracking-wider">Live Build</span>
-          <span className="text-[#e8e6e3]/30 text-xs">— {winnerName} executing</span>
+          <span className="text-[#c4a862] text-sm font-semibold uppercase tracking-wider">Your Company is Running</span>
+          <span className="text-[#e8e6e3]/30 text-xs">— agents executing</span>
         </div>
 
         {/* Metrics grid */}
@@ -116,7 +116,7 @@ export default function ExecutionView() {
             ))}
           </AnimatePresence>
           {executionLogs.length === 0 && (
-            <p className="text-[#e8e6e3]/20">Initializing build environment...</p>
+            <p className="text-[#e8e6e3]/20">Initializing execution environment...</p>
           )}
         </div>
       </div>

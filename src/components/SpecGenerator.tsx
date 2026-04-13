@@ -204,7 +204,7 @@ export default function SpecGenerator({ isDemo }: Props) {
       {/* Left: Spec stream */}
       <div className="w-[45%] flex flex-col min-w-0 flex-shrink-0">
         <div className="flex items-center gap-2 mb-3">
-          <span className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">spec::output</span>
+          <span className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">growth-plan::output</span>
           {streaming && (
             <span className="flex gap-1 ml-1">
               <span className="w-1 h-1 bg-[#c4a862] rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
@@ -213,7 +213,7 @@ export default function SpecGenerator({ isDemo }: Props) {
             </span>
           )}
           {isDemo && (
-            <span className="ml-auto text-[#e8e6e3]/15 text-[10px] font-mono">arborist → sovra</span>
+            <span className="ml-auto text-[#e8e6e3]/15 text-[10px] font-mono">agentic CEO → streakup</span>
           )}
         </div>
 
@@ -221,7 +221,7 @@ export default function SpecGenerator({ isDemo }: Props) {
           ref={containerRef}
           className="flex-1 overflow-y-auto bg-black/30 rounded-xl border border-[#e8e6e3]/8 p-4 text-xs text-[#e8e6e3]/60 leading-relaxed font-mono whitespace-pre-wrap"
         >
-          {spec || <span className="text-[#e8e6e3]/20">awaiting spec generation...</span>}
+          {spec || <span className="text-[#e8e6e3]/20">generating growth plan...</span>}
           {streaming && <span className="inline-block w-1.5 h-3.5 bg-[#c4a862] ml-0.5 animate-pulse align-middle" />}
         </div>
 
@@ -233,7 +233,7 @@ export default function SpecGenerator({ isDemo }: Props) {
               onClick={() => setPhase('bidding')}
               className="mt-3 w-full py-3 rounded-xl bg-[#c4a862] hover:bg-[#d4b872] text-[#111110] font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2"
             >
-              Open Grove Auction — Find Builders
+              Find Agents for Your Work Packages
             </motion.button>
           )}
         </AnimatePresence>
@@ -242,7 +242,7 @@ export default function SpecGenerator({ isDemo }: Props) {
       {/* Right: Phase breakdown with expandable work items */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">phases</span>
+          <span className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">work packages</span>
           {done && (
             <div className="flex items-center gap-4 text-[10px] font-mono text-[#e8e6e3]/30">
               <span>{displayPhases.length} phases</span>

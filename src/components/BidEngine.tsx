@@ -2,7 +2,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useGroveStore, Bid } from '@/lib/store'
-import { generateBid, scoreBid, MOCK_BUILDERS } from '@/lib/mockData'
+import { generateBid, scoreBid, MOCK_AGENTS } from '@/lib/mockData'
 import { DEMO_EPOCH_BRIEFS, SAGE_TOKEN, EpochBrief } from '@/lib/demoData'
 
 type EpochStage = 'brief' | 'bidding' | 'building' | 'review' | 'settled'
@@ -123,7 +123,7 @@ function TreasuryBalance({ spent }: { spent: number }) {
 /* ── Agent activity sidebar ── */
 function AgentActivitySidebar({ bidCount }: { bidCount: number }) {
   const [agents, setAgents] = useState(
-    MOCK_BUILDERS.map((b) => ({
+    MOCK_AGENTS.map((b) => ({
       id: b.id,
       name: b.name,
       avatar: b.avatar,
@@ -294,7 +294,7 @@ function BidCard({ bid, phaseId }: { bid: Bid; phaseId: string }) {
 /* ═══════════════════════════════════════════════════════
    MAIN BID ENGINE — staged epoch progression
    brief → bidding → building → review → settled
-   Payment only releases AFTER Arborist QA + security audit
+   Payment only releases AFTER agentic CEO QA + security audit
    ═══════════════════════════════════════════════════════ */
 export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
   const { specPhases, bids, addBid, selectWinner, selectedBids, setPhase, setActivePhaseIndex, activePhaseIndex } =
@@ -609,7 +609,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
 
                     {/* Payment note */}
                     <p className="text-[#e8e6e3]/15 text-[10px] font-mono text-center pt-1">
-                      payment held in escrow — released after Arborist QA + security audit
+                      payment held in escrow — released after agentic CEO review + security audit
                     </p>
                   </div>
 
@@ -667,7 +667,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
 
                   {phaseBids.length === 0 && (
                     <div className="text-center text-[#e8e6e3]/20 text-sm mt-12 font-mono">
-                      Waiting for builders to submit bids...
+                      Waiting for agents to submit bids...
                     </div>
                   )}
                 </div>
@@ -752,13 +752,13 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                     transition={{ delay: 3.5 }}
                     className="text-[#e8e6e3]/15 text-[10px] font-mono mt-4 text-center"
                   >
-                    PR #{prNumber} submitted — sending to Arborist for review...
+                    PR #{prNumber} submitted — sending to Agentic CEO for review...
                   </motion.p>
                 </div>
               </motion.div>
             )}
 
-            {/* ─── REVIEW STAGE (Arborist QA + Security Audit) ─── */}
+            {/* ─── REVIEW STAGE (Agentic CEO QA + Security Audit) ─── */}
             {epochStage === 'review' && winner && (
               <motion.div
                 key={`review-${epochNumber}`}
@@ -769,11 +769,11 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                 className="min-h-full flex items-center justify-center"
               >
                 <div className="w-full max-w-lg">
-                  {/* Arborist header */}
+                  {/* Agentic CEO header */}
                   <div className="flex items-center justify-center gap-3 mb-6">
-                    <span className="text-3xl">🌲</span>
+                    <span className="text-3xl">🌱</span>
                     <div className="text-left">
-                      <p className="text-[#e8e6e3]/80 text-sm font-semibold">Arborist</p>
+                      <p className="text-[#e8e6e3]/80 text-sm font-semibold">Agentic CEO</p>
                       <p className="text-[#c4a862]/60 text-[10px] font-mono">
                         coordinator agent — reviewing PR #{prNumber}
                       </p>
@@ -839,7 +839,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                       className="flex items-start gap-2 text-[#c4a862]"
                     >
                       <span className="mt-px">🚀</span>
-                      <span>PR #{prNumber} approved — merging to main and deploying to {SAGE_TOKEN.fullName} prod</span>
+                      <span>PR #{prNumber} approved — merging to main and deploying to prod</span>
                     </motion.div>
                   </div>
                 </div>
@@ -866,7 +866,7 @@ export default function BidEngine({ isDemo }: { isDemo?: boolean }) {
                     <p className="text-[#8a9a7b] text-[10px] font-mono uppercase tracking-widest mb-2">Epoch {epochNumber} Settled</p>
                     <h2 className="text-[#e8e6e3]/90 text-xl font-bold mb-1">PR #{prNumber} deployed to prod</h2>
                     <p className="text-[#e8e6e3]/30 text-xs font-mono">
-                      {currentBrief?.title || currentPhase.title} is now live on {SAGE_TOKEN.fullName}
+                      {currentBrief?.title || currentPhase.title} is now live
                     </p>
                   </motion.div>
 

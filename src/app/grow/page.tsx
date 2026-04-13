@@ -22,10 +22,10 @@ function GrowPageInner() {
   }, [isDemo, user, signInAs])
 
   const PHASE_LABELS: Record<string, string> = {
-    ideation: 'Describe your agent',
-    'spec-gen': 'Arborist is designing the agent',
-    bidding: 'Builders are competing',
-    execution: 'Agent going live',
+    ideation: 'Connect your project',
+    'spec-gen': 'Your agentic CEO is building your growth plan',
+    bidding: 'Agents competing for your work packages',
+    execution: 'Your company is running',
   }
 
   return (

@@ -82,7 +82,7 @@ export default function IdeaSpecView({ spec, specPhases }: { spec?: string; spec
   return (
     <div className="space-y-4">
       <div className="flex items-center gap-2">
-        <span className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">Spec</span>
+        <span className="text-[#c4a862] text-xs font-mono font-bold uppercase tracking-wider">Growth Plan</span>
       </div>
 
       {/* Raw spec text */}

@@ -1,23 +1,28 @@
 import { Bid, SpecPhase, WorkItem, ExecutionLog } from './store'
 
-export const MOCK_BUILDERS = [
-  { id: 'b1', name: 'Atlas Agents', avatar: '🌲', reputation: 94 },
-  { id: 'b2', name: 'Verdant AI', avatar: '🌿', reputation: 88 },
-  { id: 'b3', name: 'Canopy AI', avatar: '🍃', reputation: 91 },
-  { id: 'b4', name: 'Root Protocol', avatar: '🌱', reputation: 79 },
-  { id: 'b5', name: 'Branch Labs', avatar: '🌳', reputation: 85 },
+export const MOCK_AGENTS = [
+  { id: 'a1', name: 'Product Agent', avatar: '📋', reputation: 94, type: 'product' },
+  { id: 'a2', name: 'Engineering Agent', avatar: '⚙️', reputation: 91, type: 'engineering' },
+  { id: 'a3', name: 'Growth Agent', avatar: '📈', reputation: 88, type: 'growth' },
+  { id: 'a4', name: 'Design Agent', avatar: '🎨', reputation: 85, type: 'design' },
+  { id: 'a5', name: 'Capital Agent', avatar: '💰', reputation: 82, type: 'capital' },
+  { id: 'a6', name: 'Ops Agent', avatar: '🔧', reputation: 87, type: 'ops' },
 ]
 
+// Keep old name as alias for backward compatibility during transition
+export const MOCK_BUILDERS = MOCK_AGENTS
+
 const APPROACHES = [
-  'Deploy agent runtime in TEE enclave with on-chain policy contracts.',
-  'Content pipeline via fine-tuned model + safety classifier + multi-channel publisher.',
-  'Sovereign credential vault + automated account management + revenue custody.',
-  'Full agent stack: identity, constraints, distribution, and monetization in one deploy.',
-  'Modular agent architecture — each capability independently upgradeable.',
+  'Feature scoping with user stories, acceptance criteria, and edge case analysis.',
+  'Full-stack implementation with PR review, test coverage, and deployment.',
+  'Onboarding optimization, retention analysis, and growth loop design.',
+  'UI/UX improvements with component library alignment and responsive design.',
+  'Capital gap analysis, funding option identification, and metrics deck preparation.',
+  'Infrastructure setup, monitoring, CI/CD pipeline, and cost optimization.',
 ]
 
 export function generateBid(phaseId: string): Bid {
-  const builder = MOCK_BUILDERS[Math.floor(Math.random() * MOCK_BUILDERS.length)]
+  const builder = MOCK_AGENTS[Math.floor(Math.random() * MOCK_AGENTS.length)]
   const confidence = 0.6 + Math.random() * 0.35
   return {
     id: `bid-${Date.now()}-${Math.random().toString(36).slice(2)}`,
@@ -117,18 +122,18 @@ export function parseSpecPhases(spec: string): SpecPhase[] {
 }
 
 const EXECUTION_MESSAGES = [
-  (builder: string) => `${builder} analyzing agent spec...`,
-  (builder: string) => `${builder} configuring content generation pipeline...`,
-  () => `deploying TEE enclave runtime...`,
-  () => `connecting social media credentials...`,
-  () => `content safety layer active...`,
-  () => `first autonomous post published...`,
-  () => `audience engagement metrics flowing...`,
-  () => `revenue mechanisms initialized...`,
-  () => `agent operating within constraints...`,
-  () => `governance contracts deployed...`,
-  () => `agent fully autonomous and live...`,
-  () => `sovereign media agent operational...`,
+  (agent: string) => `${agent} reviewing project audit...`,
+  (agent: string) => `${agent} scoping work package...`,
+  () => `setting up analytics pipeline...`,
+  () => `instrumenting user journey events...`,
+  () => `deploying social accountability module...`,
+  () => `onboarding flow optimized — time-to-first-habit under 90s...`,
+  () => `retention metrics improving — D7 trending up...`,
+  () => `referral system live — first invites sent...`,
+  () => `paywall upgrade deployed — trial flow active...`,
+  () => `MRR tracking initialized...`,
+  () => `capital needs assessment complete...`,
+  () => `your company is running...`,
 ]
 
 export function getExecutionMessage(index: number, builderName: string): ExecutionLog {

@@ -9,11 +9,36 @@ interface Props {
   isDemo?: boolean
 }
 
+const PLATFORMS = [
+  { id: 'lovable', name: 'Lovable', icon: '💜' },
+  { id: 'replit', name: 'Replit', icon: '⚡' },
+  { id: 'emergent', name: 'Emergent', icon: '🌀' },
+  { id: 'cursor', name: 'Cursor', icon: '▶' },
+  { id: 'github', name: 'GitHub', icon: '🐙' },
+  { id: 'claude', name: 'Claude', icon: '🔮' },
+  { id: 'codex', name: 'Codex', icon: '📦' },
+  { id: 'gemini', name: 'Gemini AI Studio', icon: '✦' },
+]
+
+const PLACEHOLDER_MAP: Record<string, string> = {
+  lovable: 'Paste your Lovable project URL...',
+  replit: 'Paste your Replit project URL...',
+  emergent: 'Paste your Emergent project URL...',
+  cursor: 'Path to your local project directory or GitHub repo...',
+  github: 'Paste your GitHub repo URL...',
+  claude: 'Paste your project URL or export link...',
+  codex: 'Paste your project URL or export link...',
+  gemini: 'Paste your AI Studio project URL...',
+}
+
 export default function ChatInterface({ isDemo }: Props) {
   const [input, setInput] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [typingId, setTypingId] = useState<string | null>(null)
   const [showTweet, setShowTweet] = useState<string | null>(null)
+  const [connected, setConnected] = useState(false)
+  const [selectedPlatform, setSelectedPlatform] = useState<string | null>(null)
+  const [projectUrl, setProjectUrl] = useState('')
   const { messages, addMessage, setPhase, setIdea } = useGroveStore()
   const bottomRef = useRef<HTMLDivElement>(null)
   const demoStarted = useRef(false)
@@ -26,6 +51,11 @@ export default function ChatInterface({ isDemo }: Props) {
   useEffect(() => {
     if (!isDemo || demoStarted.current) return
     demoStarted.current = true
+
+    // Skip connection screen for demo — go straight to chat
+    setConnected(true)
+    setSelectedPlatform('lovable')
+    setProjectUrl('https://lovable.dev/projects/streakup-habit-tracker')
 
     async function runDemo() {
       for (let i = 0; i < DEMO_CONVERSATION.length; i++) {
@@ -44,7 +74,6 @@ export default function ChatInterface({ isDemo }: Props) {
           }))
           setTypingId(msgId)
 
-          // Type the display text
           for (let ci = 0; ci <= displayText.length; ci++) {
             await new Promise((r) => setTimeout(r, 14))
             useGroveStore.setState((s) => ({
@@ -55,7 +84,6 @@ export default function ChatInterface({ isDemo }: Props) {
           }
           setTypingId(null)
 
-          // Show tweet embed after typing
           if (hasTweet) {
             await new Promise((r) => setTimeout(r, 400))
             setShowTweet(msgId)
@@ -85,13 +113,25 @@ export default function ChatInterface({ isDemo }: Props) {
         }
       }
 
-      // Auto-trigger Grow It
       await new Promise((r) => setTimeout(r, 1800))
       useGroveStore.getState().setPhase('spec-gen')
     }
 
     runDemo()
   }, [isDemo])
+
+  function handleConnect() {
+    if (!selectedPlatform || !projectUrl.trim()) return
+    setConnected(true)
+
+    // Send the first message from the agentic CEO
+    const greeting: Message = {
+      id: 'ceo-greeting',
+      role: 'assistant',
+      content: `I've connected to your ${PLATFORMS.find(p => p.id === selectedPlatform)?.name} project. Give me a moment to get oriented.\n\nWhile I'm reviewing what you've built, tell me: where are you today? How many users, any revenue, and what's the one thing blocking your next phase?`,
+    }
+    addMessage(greeting)
+  }
 
   async function send(text?: string) {
     const content = text || input.trim()
@@ -136,8 +176,74 @@ export default function ChatInterface({ isDemo }: Props) {
     setPhase('spec-gen')
   }
 
-  const showGrowIt = messages.length >= 2 && !isDemo
+  const showGrowIt = messages.length >= 3 && !isDemo
 
+  // ─── Connection screen (before chat) ───
+  if (!connected && !isDemo) {
+    return (
+      <div className="flex flex-col h-full items-center justify-center px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="w-full max-w-lg"
+        >
+          <h2 className="text-[#c4a862] text-xl font-semibold text-center mb-2">Connect your project</h2>
+          <p className="text-[#e8e6e3]/40 text-sm text-center mb-8">Share your GitHub URL, a directory tree, or paste the key files directly.</p>
+
+          {/* Platform grid */}
+          <div className="grid grid-cols-4 gap-2 mb-6">
+            {PLATFORMS.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => setSelectedPlatform(p.id)}
+                className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl border transition-all ${
+                  selectedPlatform === p.id
+                    ? 'border-[#c4a862]/60 bg-[#c4a862]/10 text-[#e8e6e3]/90'
+                    : 'border-[#e8e6e3]/8 bg-[#e8e6e3]/[0.02] text-[#e8e6e3]/40 hover:border-[#e8e6e3]/20 hover:text-[#e8e6e3]/60'
+                }`}
+              >
+                <span className="text-xl">{p.icon}</span>
+                <span className="text-[11px] font-medium">{p.name}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* URL input */}
+          <AnimatePresence>
+            {selectedPlatform && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="overflow-hidden"
+              >
+                <div className="flex gap-2 mb-4">
+                  <input
+                    value={projectUrl}
+                    onChange={(e) => setProjectUrl(e.target.value)}
+                    onKeyDown={(e) => e.key === 'Enter' && handleConnect()}
+                    placeholder={PLACEHOLDER_MAP[selectedPlatform] || 'Paste your project URL...'}
+                    className="flex-1 bg-[#e8e6e3]/6 border border-[#e8e6e3]/10 rounded-xl px-4 py-3 text-[#e8e6e3] placeholder-[#e8e6e3]/25 text-sm outline-none focus:border-[#7b8a6e] transition-colors"
+                    autoFocus
+                  />
+                </div>
+
+                <button
+                  onClick={handleConnect}
+                  disabled={!projectUrl.trim()}
+                  className="w-full py-3 rounded-xl bg-[#c4a862] hover:bg-[#d4b872] disabled:opacity-30 text-[#111110] font-semibold text-sm transition-all"
+                >
+                  Connect & meet your agentic CEO →
+                </button>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.div>
+      </div>
+    )
+  }
+
+  // ─── Chat interface (after connection) ───
   return (
     <div className="flex flex-col h-full">
 
@@ -161,19 +267,17 @@ export default function ChatInterface({ isDemo }: Props) {
         )}
       </AnimatePresence>
 
+      {/* Connected project banner (non-demo) */}
+      {!isDemo && selectedPlatform && (
+        <div className="mx-4 mt-3 px-4 py-2 rounded-lg bg-[#7b8a6e]/10 border border-[#7b8a6e]/20 flex items-center gap-2">
+          <span className="text-sm">{PLATFORMS.find(p => p.id === selectedPlatform)?.icon}</span>
+          <span className="text-[#e8e6e3]/50 text-xs font-mono truncate">{projectUrl}</span>
+          <span className="ml-auto text-[#8a9a7b] text-[10px] font-mono">connected</span>
+        </div>
+      )}
+
       {/* Messages */}
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
-        {messages.length === 0 && !isDemo && (
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mt-12"
-          >
-            <p className="text-[#c4a862] text-lg font-medium">What kind of media agent would you launch?</p>
-            <p className="text-[#e8e6e3]/40 text-sm mt-2">Describe a media agent — its voice, audience, and channel. We'll design it together.</p>
-          </motion.div>
-        )}
-
         {messages.length === 0 && isDemo && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -250,7 +354,7 @@ export default function ChatInterface({ isDemo }: Props) {
               onClick={handleGrowIt}
               className="w-full py-3 rounded-xl bg-[#7b8a6e]/10 border border-[#c4a862]/40 text-[#c4a862] font-semibold text-sm hover:border-[#c4a862] hover:shadow-lg hover:shadow-[#c4a862]/10 transition-all duration-200 flex items-center justify-center gap-2"
             >
-              Launch It
+              Generate my growth plan →
             </button>
           </motion.div>
         )}
@@ -264,7 +368,7 @@ export default function ChatInterface({ isDemo }: Props) {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && send()}
-              placeholder="Describe your media agent..."
+              placeholder="Tell your agentic CEO about your project..."
               className="flex-1 bg-transparent text-[#e8e6e3] placeholder-[#e8e6e3]/30 text-sm outline-none"
             />
             <button
@@ -275,24 +379,6 @@ export default function ChatInterface({ isDemo }: Props) {
               ↑
             </button>
           </div>
-
-          {messages.length === 0 && (
-            <div className="flex gap-2 mt-3 flex-wrap">
-              {[
-                'A satirical tech cartoonist on X',
-                'A children\'s storytelling agent',
-                'A local news agent for my city',
-              ].map((s) => (
-                <button
-                  key={s}
-                  onClick={() => send(s)}
-                  className="text-xs px-3 py-1.5 rounded-full border border-[#e8e6e3]/10 text-[#e8e6e3]/50 hover:text-[#e8e6e3]/80 hover:border-[#e8e6e3]/20 transition-all"
-                >
-                  {s}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       )}
     </div>
